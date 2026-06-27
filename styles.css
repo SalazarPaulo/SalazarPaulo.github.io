@@ -6,6 +6,23 @@
    Self-host only after adding the licensed matching WOFF2 files to assets/fonts/.
    ============================================================================ */
 
+/* ============================================================================
+   DEV ARCADE — STYLESHEET MAP (V18)
+   --------------------------------------------------------------------------
+   01. Foundations and exterior arcade stage
+   02. Cabinet chassis and physical modules
+   03. CRT monitor shell, canvas and notices
+   04. Home, Profile and Projects pages
+   05. Skills / section C (V13 reference system)
+   06. Contact, About Me, games and settings
+   07. Console: joystick, navigation buttons, START and INSERT COIN
+   08. Dialogs, motion and responsive safeguards
+   09. Historical V10–V17 compatibility overrides
+   10. V18 requested-only refinements
+
+   Cascade note: V17 rule order remains unchanged. The comments below only
+   segment the file for maintenance; the V18 block is isolated at the end.
+   ============================================================================ */
 
 /* ───────────────────────── 01. FOUNDATIONS ───────────────────────── */
 :root {
@@ -181,7 +198,10 @@ h3 { font-size:clamp(8px,.96vw,11px); line-height:1.65; }
   .arcade-cabinet{width:100vw;height:100dvh;}.cabinet-top{border-radius:0}.cabinet-body{border-left-width:3px;border-right-width:3px}.cabinet-footer{border-radius:0;font-size:3px}.screen-header,.screen-footer{font-size:4px}.screen-header__live{display:none}.sound-toggle{font-size:4px}.home-layout{grid-template-columns:1fr}.home-panels{grid-template-columns:1fr 1fr}.hero-copy{display:none}.pixel-card{padding:7px}.home-title h1{font-size:22px}.profile-layout{grid-template-columns:72px 1fr}.avatar-pixel{width:72px}.terminal-block{font-size:4px}.project-card h3{font-size:5px}.project-card p{display:none}.tag-row{display:none}.skills-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}.contact-layout{grid-template-columns:1fr}.contact-layout h2{font-size:16px}.contact-layout>div:first-child p{display:none}.bento-grid{grid-template-columns:1fr 1fr}.bento-card--wide{grid-column:span 2}.game-select{gap:7px}.game-option{padding:8px}.speaker{display:none}.control-panel{grid-template-columns:.85fr 2.5fr .55fr .52fr;}.joystick-zone{grid-column:1}.arcade-buttons{grid-column:2}.start-button{grid-column:3}.coin-slot{grid-column:4}.speaker{display:none}.arcade-button>span{width:22px}.arcade-button small{display:none}.joystick-label{font-size:4px}
 }
 
-
+/* --------------------------------------------------------------------------
+   V2 ENHANCED: features imported from the final edition without changing
+   V2's cabinet proportions or dominant CRT screen.                            
+   -------------------------------------------------------------------------- */
 :root { --text-accent: var(--cyan); }
 body { transition: background .25s ease, color .25s ease; }
 body[data-palette="amber"] { --text-accent: var(--yellow); }
@@ -206,7 +226,7 @@ body[data-resolved-theme="light"] .control-panel { background:linear-gradient(15
 body[data-resolved-theme="light"] .cabinet-footer { background:linear-gradient(#59659a,#373e73); color:#eaf0ff; }
 body[data-resolved-theme="light"] .neon-arena { background:linear-gradient(#e8dcff 0%,#bdcbf6 55%,#9ca9e4 100%); }
 
-
+/* Mantiene la composición V2 y añade luz y controles superiores de la versión final. */
 .ambient--three { position:absolute; width:24vmax; height:24vmax; right:13vmax; top:-17vmax; border-radius:50%; filter:blur(90px); opacity:.13; background:var(--violet); pointer-events:none; }
 .marquee-lamps { position:absolute; z-index:3; left:14%; right:14%; bottom:5px; display:flex; justify-content:space-between; pointer-events:none; }
 .marquee-lamps i { width:5px; height:5px; border-radius:50%; background:var(--yellow); box-shadow:0 0 7px var(--yellow),0 0 12px var(--pink); animation:lampPulse 1.15s steps(2) infinite; }
@@ -230,7 +250,7 @@ body[data-resolved-theme="light"] .neon-arena { background:linear-gradient(#e8dc
 .screen-content h1, .screen-content h2, .screen-content .eyebrow { text-shadow-color:var(--text-accent); }
 .screen-content .eyebrow { color:var(--text-accent); }
 
-
+/* Panel V2 con la tecla CFG añadida sin sacrificar el tamaño del monitor. */
 .control-panel { grid-template-columns:.42fr .92fr 2.35fr .55fr .52fr .42fr .42fr; }
 .settings-key { height:70%; min-width:0; display:grid; place-content:center; gap:5px; padding:4px; color:var(--cyan); border:2px solid #0b0b16; border-radius:4px; background:linear-gradient(#57558a,#292544); box-shadow:inset 0 0 0 2px #827eb4,0 4px 0 #090911; cursor:pointer; font-family:var(--pixel); font-size:clamp(8px,.85vw,10px); transition:transform .1s; }
 .settings-key small { color:#e8ddff; font-family:var(--pixel); font-size:clamp(4px,.42vw,5px); }
@@ -304,7 +324,11 @@ button.bento-card:hover, button.bento-card:focus-visible { outline:0; transform:
 }
 @media (max-height:680px) and (min-width:800px) { .cabinet-body { grid-template-rows:minmax(0,1fr) clamp(98px,18vh,130px); }.tube--bottom{bottom:calc(clamp(98px,18vh,130px) + 8px)}.corner-light--bl,.corner-light--br{bottom:calc(clamp(98px,18vh,130px) + 16px)}.neon-arena{height:190px} }
 
-
+/* ============================================================
+   V10 — Base V2 Enhanced: CRT dominante + módulos separados.
+   Mantiene pantalla alta, amplía ligeramente la consola y simplifica
+   la marquesina a "DEV ARCADE" sin subtítulo.
+   ============================================================ */
 :root {
   --v10-console-h: clamp(8.75rem, 19.5vh, 11.25rem);
   --v10-gap: clamp(.48rem, .95vh, .72rem);
@@ -429,7 +453,7 @@ button.bento-card:hover, button.bento-card:focus-visible { outline:0; transform:
 .control-module .settings-key { height: 76%; }
 .cabinet-footer { display:none; }
 
-
+/* Dos monedas, heredando los acabados cyan de V2 y dorado de V3. */
 .coin-fx { width: clamp(1.65rem,2.8vw,2.45rem); height: clamp(1.65rem,2.8vw,2.45rem); overflow:visible; }
 .coin-fx span { position:absolute; inset:0; display:block; border-radius:50%; opacity:0; }
 .coin-fx__v2 { border:3px solid #d9ffff; background:radial-gradient(circle at 35% 25%,#fff 0 8%,#a6ffff 22%,#32bfd8 63%,#0a4f92 100%); box-shadow:0 0 16px var(--cyan), inset -4px -5px 0 rgba(3,40,80,.38); }
@@ -463,7 +487,11 @@ button.bento-card:hover, button.bento-card:focus-visible { outline:0; transform:
   .screen-module .side-light { top:3.65rem; }
 }
 
-
+/* ============================================================
+   V11 — Desktop-first viewport fit.
+   La máquina se compone de tres módulos reales y se dimensiona
+   según el área útil de la ventana para que la consola cierre.
+   ============================================================ */
 :root {
   --viewport-w: 100vw;
   --viewport-h: 100dvh;
@@ -663,7 +691,10 @@ body[data-screen-density="compact"] .control-module .joystick-ball { top:-.9rem;
 /* Nunca recortar pantallas con contenido alto: el desplazamiento queda dentro del CRT. */
 .screen-page--game { overflow-y:auto; overflow-x:hidden; }
 
-
+/* ============================================================
+   V12 — Interaction clarity, contact form, language selector.
+   Keeps the V11 desktop geometry and only refines requested areas.
+   ============================================================ */
 :root {
   --v12-body-pad: clamp(7px, 1.25vw, 14px);
   --console-label: #fbfcff;
@@ -678,7 +709,7 @@ body[data-screen-density="compact"] .control-module .joystick-ball { top:-.9rem;
   margin-inline: auto;
 }
 
-
+/* V2-style physical loading notice inside the CRT, plus a blue external toast. */
 .screen-notice {
   position: absolute;
   z-index: 12;
@@ -889,6 +920,10 @@ body[data-screen-density="compact"] .control-module .joystick-ball { top:-.9rem;
 }
 
 
+/* ============================================================
+   V13 — targeted corrections only: compact header/console,
+   CRT gain, About Me visual, modals and accessible typography.
+   ============================================================ */
 :root {
   --v13-marquee-h: clamp(30px, 3.65vh, 39px);
   --v13-console-h: clamp(108px, 15.6vh, 132px);
@@ -955,7 +990,7 @@ body[data-screen-density="compact"] .control-module .joystick-ball { top:-.9rem;
 .control-module .arcade-button > span { width: clamp(2.22rem,3.05vw,2.75rem); }
 .control-module .start-button,.control-module .coin-slot,.control-module .settings-key { height:74%; }
 
-
+/* V3 terminal-style notice inside CRT. The blue V2 toast remains outside the CRT. */
 .screen-notice {
   left: clamp(12px, 2.1cqw, 28px);
   bottom: clamp(8px, 1.1cqw, 14px);
@@ -1041,7 +1076,10 @@ body[data-screen-density="compact"] .control-module .joystick-ball { top:-.9rem;
 body[data-screen-density="compact"] .control-module .joystick-ball { top:clamp(-.25rem,-.32vw,-.15rem); }
 @media (max-width:760px) { .control-module .joystick-ball { top:clamp(-.25rem,-.32vw,-.15rem); } }
 
-
+/* ============================================================
+   V14 — target-only refinements requested after V13.
+   Keeps navigation, CRT effects, music, settings and game logic.
+   ============================================================ */
 :root {
   --v14-marquee-h: clamp(24px, 2.95vh, 31px);
   --v14-console-h: clamp(96px, 13.4vh, 112px);
@@ -1117,7 +1155,7 @@ body[data-screen-density="compact"] .control-module .joystick-ball { top:clamp(-
 .control-module .settings-key small { font-size:clamp(5px,.52vw,7px); }
 .control-module .start-button,.control-module .coin-slot,.control-module .settings-key { height:74%; }
 
-
+/* Profile image uses the local pixelated version of the uploaded photo. */
 .profile-pixel-portrait {
   width:clamp(102px,15vw,158px); aspect-ratio:1; align-self:center; overflow:hidden;
   border:3px solid var(--cyan); background:#11183a; box-shadow:0 0 18px rgba(82,243,255,.4),inset 0 0 0 6px #111840;
@@ -1152,7 +1190,7 @@ body[data-screen-density="compact"] .control-module .joystick-ball { top:clamp(-
 .contact-icon--linkedin { border-radius:4px; }
 .contact-link { min-height:clamp(52px,5.6vw,66px); }
 
-
+/* The V3 terminal notice lives in the CRT; the V12 blue notice is next to the console. */
 .screen-notice { left:clamp(11px,1.6cqw,22px); bottom:clamp(8px,1cqw,12px); width:auto; max-width:min(74%,30rem); padding:5px 8px; transform:translateX(-8px); border:0; border-left:3px solid var(--lime); background:rgba(4,13,29,.82); color:var(--lime); box-shadow:inset 0 0 0 1px rgba(128,255,100,.18),0 0 10px rgba(104,255,92,.22); text-align:left; font-size:clamp(5px,.56cqw,8px); }
 .screen-notice::before { content:"> "; color:var(--yellow); }
 .screen-notice.is-visible { transform:translateX(0); }
@@ -1196,15 +1234,21 @@ body[data-resolved-theme="light"] .screen-notice { color:#155725; background:rgb
 }
 
 
+/* ============================================================
+   V15 — requested-only corrections: V13 Skills/About, V12 home
+   typography, +8% joystick lever, local project technology logos,
+   manual Night/Light selector.
+   ============================================================ */
+/* V12 sized stat + mission typography. */
 .pixel-card__label { font-size:clamp(6px,.65vw,8px) !important; }
 .mini-stats strong { font-size:clamp(11px,1.4vw,17px) !important; }
 .mini-stats span { font-size:clamp(5px,.52vw,7px) !important; }
 .mission-list li { font-size:clamp(6px,.68vw,8px) !important; line-height:1.55 !important; }
 
-
+/* V15: the physical joystick lever is 8% larger than V14, without moving the base. */
 .control-module .joystick-stick { width:clamp(.562rem,.81vw,.713rem); height:clamp(2.311rem,3.326vw,2.873rem); }
 
-
+/* V13 visual distribution restored exactly for Skills and About Me. */
 .skills-grid--v13 { grid-template-columns:repeat(4,minmax(0,1fr)); }
 .bento-grid--v13 { height:calc(100% - 38px); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:clamp(7px,.72vw,10px); }
 .bento-grid--v13 .bento-card { justify-content:center; align-items:center; text-align:center; padding:9px; }
@@ -1217,14 +1261,21 @@ body[data-resolved-theme="light"] .screen-notice { color:#155725; background:rgb
 .tag-row--logos span { display:inline-flex; align-items:center; gap:4px; }
 .tag-row--logos img { width:12px; height:12px; object-fit:contain; flex:0 0 auto; }
 
-
+/* Cartoon-pixel portrait replaces the old color grid only in Player Profile. */
 .profile-pixel-portrait { width:clamp(102px,15vw,158px); aspect-ratio:4/5; align-self:center; overflow:hidden; border:3px solid var(--cyan); background:#11183a; box-shadow:0 0 18px rgba(82,243,255,.4), inset 0 0 0 6px #111840; image-rendering:pixelated; }
 .profile-pixel-portrait img { width:100%; height:100%; object-fit:cover; image-rendering:pixelated; display:block; animation:portraitFlicker 4.8s steps(2) infinite; }
 
-
+/* Auto remains internal for saved legacy preferences; only Night and Light are exposed in the controls. */
 .segmented [data-theme-choice="system"] { display:none !important; }
 
 
+/* ============================================================
+   V16 — exact rebase from user-supplied V15.
+   Only the requested differences are defined below.
+   ============================================================ */
+
+/* 1. Desktop-fit safeguard: the arcade always remains inside the viewport.
+   This only affects chassis sizing; inner CRT scrolling remains unchanged. */
 html, body { min-height:0; overflow:hidden; }
 .arcade-stage { min-height:0; height:100dvh; padding:clamp(4px,.9vh,10px) clamp(5px,1.1vw,14px); }
 .arcade-cabinet { min-height:0; height:min(calc(100dvh - clamp(8px,1.8vh,20px)), 910px); max-height:calc(100dvh - clamp(8px,1.8vh,20px)); }
@@ -1233,7 +1284,7 @@ html, body { min-height:0; overflow:hidden; }
   .control-module .joystick-stick { height:clamp(2.12rem,3.05vw,2.58rem); }
 }
 
-
+/* 2. Restore the V13 exterior perspective grid with strong vertical and horizontal lines. */
 .arcade-stage::before {
   opacity:.30;
   background-image:
@@ -1244,7 +1295,8 @@ html, body { min-height:0; overflow:hidden; }
   transform-origin:center bottom;
 }
 
-
+/* 3. The V15 terminal message stays inside the CRT. The V12 blue message moves outside,
+      directly above the physical console module. */
 .control-module { overflow:visible; }
 .control-module .console-toast {
   position:absolute;
@@ -1268,10 +1320,11 @@ html, body { min-height:0; overflow:hidden; }
   transition:transform .24s ease,opacity .24s ease;
 }
 .control-module .console-toast.is-visible { transform:translate(-50%,0) scale(1); opacity:1; }
-
+/* Neutralize the original viewport-fixed toast rule, now that the element is in the console. */
 .control-module .toast { left:50%; right:auto; top:auto; }
 
-
+/* 4. V12 skills distribution is restored by the V12 markup. Keep its boxed mini-icons
+      readable while preserving V15's colors and responsive behavior. */
 .skills-grid:not(.skills-grid--v13) { grid-template-columns:repeat(4,minmax(0,1fr)); }
 .skills-grid:not(.skills-grid--v13) .skill-card { min-width:0; padding:clamp(9px,1.12vw,13px); overflow:hidden; }
 .skills-grid:not(.skills-grid--v13) .skill-card h3 { margin:7px 0 8px; color:#fff4c4; }
@@ -1283,11 +1336,20 @@ html, body { min-height:0; overflow:hidden; }
 /* 5. The supplied concept art replaces only the Player Profile pixel-art portrait. */
 .profile-pixel-portrait img { object-fit:cover; object-position:center; image-rendering:auto; animation:none; }
 
-
+/* 6. Increase only the joystick lever length by 8% from V15. */
 .control-module .joystick-stick { height:clamp(2.496rem,3.592vw,3.103rem); }
 @media (max-height:760px) and (min-width:800px) { .control-module .joystick-stick { height:clamp(2.20rem,3.17vw,2.77rem); } }
 
 
+/* ============================================================
+   V17 — Requested-only refinements from the V16 base.
+   1) +15% joystick lever
+   2) V13 exact Skills presentation
+   3) V2/V3 console color energy, start lamp, coin inscription
+   4) System restored in Settings (outside header remains Light/Dark)
+   ============================================================ */
+
+/* 1. +15% from the V16 lever dimensions. This is deliberately final to override viewport presets. */
 .control-module .joystick-stick {
   height: clamp(2.870rem, 4.131vw, 3.568rem) !important;
 }
@@ -1295,7 +1357,7 @@ html, body { min-height:0; overflow:hidden; }
   .control-module .joystick-stick { height: clamp(2.530rem, 3.646vw, 3.186rem) !important; }
 }
 
-
+/* 2. Section C: exact V13 visual system (four plain skill cards, no mini boxes). */
 .skills-grid.skills-grid--v13 {
   height: calc(100% - 52px);
   display: grid;
@@ -1335,10 +1397,10 @@ html, body { min-height:0; overflow:hidden; }
   .skills-grid.skills-grid--v13 { grid-template-columns: repeat(2,1fr); grid-template-rows: repeat(2,1fr); height:auto; }
 }
 
-
+/* 3. Restore SYSTEM as a real setting. AUTO/SYSTEM is never exposed in the small external toggle. */
 .segmented [data-theme-choice="system"] { display: inline-flex !important; }
 
-
+/* 4. V2-inspired vivid physical console buttons. */
 .control-module .arcade-button > span {
   border-color: #080811;
   box-shadow: inset 0 2px 3px rgba(255,255,255,.48), inset -5px -6px 6px rgba(0,0,0,.45), 0 4px 0 #07070d, 0 0 15px currentColor;
@@ -1351,7 +1413,7 @@ html, body { min-height:0; overflow:hidden; }
 .control-module .arcade-button.is-pressed > span,
 .control-module .arcade-button:active > span { box-shadow: inset 0 4px 9px rgba(0,0,0,.72), 0 1px 0 #07070d, 0 0 7px currentColor; }
 
-
+/* V3-like illuminated START with a yellow status point. */
 .control-module .start-button {
   position: relative;
   overflow: hidden;
@@ -1380,7 +1442,7 @@ html, body { min-height:0; overflow:hidden; }
 }
 .control-module .start-button span { margin-top:clamp(4px,.5vw,7px); }
 
-
+/* V2 coin slot energy and V2/V3 insertion glow. */
 .control-module .coin-slot {
   position:relative;
   overflow:visible;
@@ -1440,6 +1502,16 @@ html, body { min-height:0; overflow:hidden; }
 .control-module .coin-slot__label { position:relative; z-index:1; }
 
 
+/* ============================================================================
+   10. V18 REQUESTED-ONLY REFINEMENTS
+   --------------------------------------------------------------------------
+   A) Bright V2 console palette for navigation buttons.
+   B) Section C uses the V13 Skill Loadout CSS, scoped to that screen only.
+   C) V2-style under-slot glow below INSERT COIN.
+   ============================================================================ */
+
+/* A. Bright V2 physical button palette: classes stay in their V17 order,
+      while the printed keyboard legends are A / S / D / F / G. */
 .control-module .arcade-button > span {
   border-color: #090910;
   box-shadow:
@@ -1500,7 +1572,7 @@ html, body { min-height:0; overflow:hidden; }
     0 0 7px currentColor;
 }
 
-
+/* B. SECTION C / SKILLS — V13 CSS values, scoped so other screens are unchanged. */
 .screen-page[data-page="skills"] .skills-grid {
   height: calc(100% - 52px);
   display: grid;
@@ -1595,7 +1667,7 @@ html, body { min-height:0; overflow:hidden; }
   }
 }
 
-
+/* C. V2 under-slot "resplandor". The V17 coin animation and inscriptions remain unchanged. */
 .control-module .coin-slot::after {
   content: "";
   position: absolute;
@@ -1627,6 +1699,13 @@ html, body { min-height:0; overflow:hidden; }
   100% { opacity: .2; transform: scaleX(.72); }
 }
 
+/* ============================================================================
+   SECTION · SKILLS (SELF-CONTAINED V13 DISTRIBUTION)
+   --------------------------------------------------------------------------
+   This block is intentionally independent from generic .skills-grid,
+   .skill-card and .skill-mini styles used elsewhere in legacy versions.
+   Only markup inside .skills-v13-standalone is affected.
+   ============================================================================ */
 
 .skills-v13-standalone {
   height: 100%;
@@ -1782,6 +1861,15 @@ body[data-resolved-theme="light"] .skills-v13-standalone__mini strong {
   }
 }
 
+
+
+/* ============================================================================
+   V19 · GAME SELECT VISUAL THEME + JOYSTICK CLICK MOTION
+   --------------------------------------------------------------------------
+   Scope deliberately limited to the game-selection page and joystick click.
+   Existing cabinet, navigation, Skills, projects, forms and game mechanics
+   are left untouched.
+   ============================================================================ */
 
 /* ───────────────────── GAME SELECT · VISUAL THEME ───────────────────── */
 .screen-page[data-page="games"] {
@@ -2101,6 +2189,15 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-option--
 }
 
 
+/* ============================================================================
+   V20 · GAME CARD COMPLETION + JOYSTICK PAGE RESPONSE
+   --------------------------------------------------------------------------
+   - Restores the original game-button appearance from the pre-V19 edition.
+   - Keeps V19 card artwork while preserving all game-card copy and CTAs.
+   - Adds status labels and reserves card space so title, description and CTA
+     remain visible within the CRT.
+   ============================================================================ */
+
 /* ───────────────── GAME SELECT · COMPLETE CARD CONTENT ───────────────── */
 .screen-page[data-page="games"] {
   gap: clamp(5px, .8vh, 8px);
@@ -2172,7 +2269,7 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-option--
   overflow: visible;
 }
 
-
+/* Restores the original, shared game controls. V19 card art stays untouched. */
 .screen-page[data-page="games"] .game-launch {
   border: 2px solid var(--text-accent);
   color: #fff6c7;
@@ -2225,6 +2322,15 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-option--
   }
 }
 
+
+/* ============================================================================
+   V21 · GAME SELECT HORIZONTAL ACCORDION
+   --------------------------------------------------------------------------
+   Base: V20. Scope: only the page [data-page="games"] and its new accordion.
+   Reference inspiration: the screen-layout build's game-select presentation.
+   No cabinet, navigation, Skills, profile, projects, settings, or mini-game
+   combat rules are changed here.
+   ============================================================================ */
 
 .screen-page[data-page="games"] {
   grid-template-rows: auto minmax(0, 1fr) auto;
@@ -2415,7 +2521,7 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-option--
 .game-accordion__content small {
   transform: translateY(-20px);
 }
-
+/* V20's original shared button style is intentionally retained. */
 .screen-page[data-page="games"] .game-accordion .game-launch {
   align-self: end;
   min-width: 0;
@@ -2611,6 +2717,12 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-accordio
   }
 }
 
+/* ============================================================================
+   V22 · GAME SELECT SPACING + NEON FIGHTERS JUMP
+   --------------------------------------------------------------------------
+   Scope: only the Games screen. The portfolio-return key moves into the
+   Game Select intro card, and the accordion gains the released vertical space.
+   ============================================================================ */
 
 /* The Games page now has only intro + accordion rows; the return key lives
    inside the intro card, so the accordion can use all remaining height. */
@@ -2645,6 +2757,15 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-accordio
 }
 
 
+/* ============================================================================
+   V23 · GAME SELECT CARD HEIGHT RESTORE
+   --------------------------------------------------------------------------
+   Scope: only the Games page. The portfolio-return button is placed in the
+   intro's right column instead of consuming a dedicated lower strip.
+   This returns at least 15px of vertical room to the accordion panels while
+   preserving the original button dimensions and the V22 accordion behavior.
+   ============================================================================ */
+
 .screen-page[data-page="games"] .game-intro {
   display: grid;
   grid-template-columns: minmax(0, 1fr) max-content;
@@ -2655,7 +2776,8 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-accordio
   column-gap: clamp(10px, 1.25vw, 16px);
   align-items: start;
 
-  
+  /* V22 reserved 28–36px below for the absolute key. Reclaiming it gives
+     the accordion more than the requested 15px of vertical card space. */
   padding-bottom: clamp(10px, 1.1vw, 14px);
 }
 
@@ -3330,5 +3452,50 @@ body[data-resolved-theme="light"] .screen-page[data-page="games"] .game-accordio
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .fight-controls {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .fight-controls > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(18px, .45fr) minmax(56px, 1.3fr);
+    align-items: stretch;
+    gap: clamp(6px, 1.8vw, 10px);
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .fight-controls button {
+    width: 100%;
+    min-width: 0;
+    height: clamp(42px, 12vw, 52px);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .fight-controls button[data-game-action="left"] {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .fight-controls button[data-game-action="jump"] {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .fight-controls button[data-game-action="right"] {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .fight-controls button[data-game-action="attack"] {
+    grid-column: 5;
+    grid-row: 1;
   }
 }

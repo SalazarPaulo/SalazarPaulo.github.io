@@ -8,17 +8,23 @@
 ![EmailJS](https://img.shields.io/badge/EmailJS-Contact_Form-5C32B7?style=for-the-badge)
 ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Static_Deploy-222222?style=for-the-badge&logo=githubpages&logoColor=white)
 
-**DEV ARCADE** es un portafolio web estático e interactivo con estética de máquina arcade y pantalla CRT. Este presenta el perfil profesional, los proyectos, las habilidades, los certificaciones, el currículum, un contacto y un minijuego jugable, sin requerir servidor propio ni base de datos.
+**DEV ARCADE** es un portafolio web estático e interactivo con estética de máquina arcade y pantalla CRT. Presenta perfil profesional, proyectos, habilidades, certificaciones, currículum, contacto y un minijuego jugable, sin requerir servidor propio ni base de datos.
+
+<p align="center">
+  <img src="./assets/images/pedro-salazar.webp" width="260" alt="Retrato de Pedro Salazar" />
+</p>
 
 ---
 
 ## 🌐 Publicación
 
-El sitio esta publicado en GitHub Pages desde la raíz del repositorio:
+El sitio puede publicarse en GitHub Pages desde la raíz del repositorio:
 
 ```text
 https://<usuario>.github.io
 ```
+
+No necesita compilación para ser publicado. `index.html` carga los archivos optimizados incluidos en el proyecto.
 
 ---
 
@@ -94,6 +100,26 @@ El contenido principal incluye:
 | Imágenes | WebP + SVG | Recursos visuales de bajo peso y escalabilidad vectorial. |
 | Publicación | GitHub Pages | Hosting estático desde el repositorio. |
 | Construcción opcional | esbuild + Lightning CSS + Prettier | Minificación y validación al editar fuentes. |
+
+---
+
+## 🖼️ Recursos visuales
+
+### Retrato profesional
+
+<p align="center">
+  <img src="./assets/images/pedro-salazar-640.webp" width="300" alt="Retrato profesional" />
+</p>
+
+El retrato utiliza variantes WebP para que cada pantalla descargue un tamaño apropiado.
+
+### Plano de la mansión
+
+<p align="center">
+  <img src="./assets/images/mansion-blueprint-800.webp" width="420" alt="Plano de la mansión conceptual" />
+</p>
+
+La ilustración acompaña el perfil del concepto de juego y cuenta con versiones adaptadas a pantallas pequeñas.
 
 ---
 
@@ -173,7 +199,7 @@ assets/
 | Servicio externo | EmailJS se integra bajo demanda al abrir el formulario de contacto. |
 | Entrega | GitHub Pages sirve los archivos como contenido estático. |
 
-La navegación no utiliza un router de framework todo se gestiona mediante secciones con `data-page`, el atributo `hidden` y un estado de página activo controlado por JavaScript.
+La navegación no utiliza un router de framework. Se gestiona mediante secciones con `data-page`, el atributo `hidden` y un estado de página activo controlado por JavaScript.
 
 ---
 
@@ -426,20 +452,20 @@ http://localhost:8080
 
 ### Generar archivos minificados
 
-Solo necesitas Node.js 22.13 o superior y pnpm 11.9.0 si modificas `styles.css` o `script.js` y deseas regenerar los archivos de producción. El proyecto incluye `pnpm-lock.yaml` para mantener las dependencias de compilación reproducibles.
+Solo necesitas Node.js y npm si modificas `styles.css` o `script.js` y deseas regenerar los archivos de producción.
 
 ```bash
-pnpm install --frozen-lockfile
-pnpm run check
-pnpm run build
+npm install
+npm run check
+npm run build
 ```
 
 | Comando | Acción |
 |---|---|
-| `pnpm run check` | Valida la sintaxis de `script.js`. |
-| `pnpm run build:css` | Minifica `styles.css` en `styles.min.css`. |
-| `pnpm run build:js` | Minifica `script.js` en `script.min.js`. |
-| `pnpm run build` | Valida el código, genera ambos paquetes minificados y verifica el paquete JavaScript publicado. |
+| `npm run check` | Formatea/verifica HTML, CSS y JavaScript, además de validar sintaxis JavaScript. |
+| `npm run build:css` | Minifica `styles.css` en `styles.min.css`. |
+| `npm run build:js` | Minifica `script.js` en `script.min.js`. |
+| `npm run build` | Ejecuta validación y ambas minificaciones. |
 
 ---
 
@@ -470,7 +496,7 @@ Antes de publicar cambios:
 2. Prueba navegación por mouse, teclado y pantalla táctil.
 3. Verifica envío de contacto y restricciones de dominio en EmailJS.
 4. Revisa la vista móvil con los controles del juego separados por lados.
-5. Ejecuta `pnpm run check` y `pnpm run build` después de editar los archivos fuente; no modifiques los archivos `.min` manualmente.
+5. Ejecuta `npm run check` y `npm run build` después de editar los archivos fuente.
 6. Confirma que `index.html` cargue `styles.min.css` y `script.min.js` antes de publicar.
 
 ---

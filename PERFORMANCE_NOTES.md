@@ -1,27 +1,29 @@
-# Rendimiento y experiencia de carga
+# Performance Notes
 
-## Recursos visuales
+## Applied improvements
 
-- Las ilustraciones principales se sirven en WebP mediante `srcset` y `sizes`, de modo que cada pantalla solicita una variante adecuada a su espacio disponible.
-- Las imágenes que no son críticas para el primer render usan `loading="lazy"` y `decoding="async"`.
-- Los iconos SVG de Skills y Contact se preparan en caché durante el tiempo inactivo del navegador y al anticipar la navegación mediante puntero, foco, toque o selección.
-- Los iconos vectoriales se mantienen como SVG para conservar nitidez con archivos pequeños.
+- Replaced versioned class names with semantic names such as `skill-inventory`, `about-grid`, `about-card`, `project-grid--featured`, `coin-fx__trail`, and `coin-fx__token`.
+- Removed version-history labels from HTML, CSS, and JavaScript source.
+- Converted the blueprint, portrait, Gmail icon, and LinkedIn icon to WebP.
+- Added `loading="lazy"` and `decoding="async"` to non-critical images.
+- Kept large illustrations in hidden sections lazy-loaded instead of preloading them during the opening screen.
+- Warmed the compact Skills and Contact SVGs in the browser cache at idle time, plus on navigation hover, focus, touch, and selection. This removes the visible icon delay without prioritizing them above the opening screen.
+- Moved EmailJS loading to the contact-dialog interaction instead of initial page load.
+- Reduced canvas work using a 30 FPS cap, a lower mobile pixel ratio, fewer generated stars, `ResizeObserver`, and page-visibility pausing.
+- Throttled mouse-driven joystick updates to one visual update per animation frame.
+- Debounced localStorage writes while text-size sliders move.
+- Added reduced-motion support.
+- Added `.nojekyll` for static publishing.
 
-## Carga de código y red
+## Raster asset comparison
 
-- EmailJS se carga cuando el usuario abre el flujo de contacto, no durante el render inicial.
-- Las fuentes externas usan `preconnect` y `font-display: swap` para priorizar texto visible.
-- `styles.min.css` y `script.min.js` reducen la transferencia y el tiempo de análisis del navegador.
+| Asset | Original | Optimized | Difference |
+|---|---:|---:|---:|
+| Blueprint | 3340.3 KB | 217.7 KB | 93.5% smaller |
+| Portrait | 99.6 KB | 63.6 KB | 36.2% smaller |
+| Gmail icon | 19.2 KB | 16.9 KB | 11.9% smaller |
+| LinkedIn icon | 124.7 KB | 26.4 KB | 78.8% smaller |
 
-## Renderizado e interacción
+## Why the project does not use infinite scrolling
 
-- El Canvas limita su frecuencia de dibujo y usa una densidad de píxeles menor en pantallas compactas.
-- `ResizeObserver` actualiza el lienzo solo cuando cambia su tamaño.
-- La animación se pausa cuando la página no está visible.
-- Las actualizaciones del joystick guiadas por puntero se agrupan con `requestAnimationFrame`.
-- Las escrituras de preferencias en `localStorage` se agrupan para evitar operaciones repetidas mientras el usuario ajusta controles.
-- Las preferencias de reducción de movimiento se respetan con `prefers-reduced-motion`.
-
-## Navegación de contenido
-
-El portafolio utiliza un conjunto fijo de pantalla.
+The portfolio has a small, fixed set of sections. Native scrolling and lazy media are faster, more accessible, and simpler than infinite scrolling, which would add JavaScript work without a useful loading benefit.

@@ -1,26 +1,33 @@
-# Arquitectura del proyecto
+# Source Architecture
 
-## Visión general
+## HTML
 
-DEV ARCADE es un portafolio estático de una sola página. Utiliza HTML, CSS y JavaScript nativos para presentar el perfil, proyectos, tecnologías, contacto y un minijuego interactivo.
+`index.html` contains semantic screen sections, dialogs, accessible controls, and `data-*` hooks for behavior.
 
-## Capa de presentación
+## CSS
 
-- `index.html` contiene la estructura semántica, los diálogos, controles accesibles y atributos `data-*` usados por la interfaz.
-- `styles.css` define los estilos legibles: diseño arcade, composición CRT, páginas internas, controles, diálogos, adaptación móvil y preferencias de accesibilidad.
-- `styles.min.css` es la hoja de estilos optimizada que carga la página publicada.
+`styles.css` uses numbered headers and groups rules around:
 
-## Capa de comportamiento
+1. design tokens;
+2. cabinet and CRT layout;
+3. portfolio screens;
+4. controls and dialogs;
+5. responsive behavior;
+6. performance and accessibility safeguards.
 
-- `script.js` contiene la lógica legible del sitio: navegación, idioma, tema, sonido, diálogos, formularios, minijuego, Canvas y controles táctiles.
-- `script.min.js` es el paquete JavaScript optimizado que carga la página publicada.
+## JavaScript
 
-## Recursos
+`script.js` uses focused sections for:
 
-- `assets/images/` reúne las ilustraciones WebP y sus variantes responsivas.
-- `assets/icons/`, `assets/skills/` y `assets/tech/` contienen iconos SVG, favicon e imágenes de interfaz.
-- `assets/documents/` almacena los currículos disponibles desde el portafolio.
+1. static configuration and localized copy;
+2. persistent settings;
+3. DOM references;
+4. notification helpers;
+5. routing and dialogs;
+6. audio;
+7. the mini-game;
+8. optimized canvas rendering;
+9. event bindings;
+10. on-demand EmailJS delivery.
 
-## Servicios y APIs del navegador
-
-El proyecto usa APIs nativas del navegador: DOM, Canvas 2D, `requestAnimationFrame`, `localStorage`, `matchMedia`, `ResizeObserver`, eventos de teclado, puntero y toque. El formulario carga EmailJS bajo demanda cuando se utiliza el diálogo de contacto.
+The project uses native browser APIs and has no framework or build dependency.

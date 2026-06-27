@@ -1,34 +1,39 @@
-# Verificación técnica
+# Refactor Audit
 
-## Comprobaciones de código
+## Source validation
 
-Ejecuta estos comandos desde la raíz del proyecto:
+- `node --check` passed for both the readable and production JavaScript bundles.
+- `prettier --check` passed for HTML, CSS, and JavaScript source.
+- A JSDOM bootstrap test passed for both JavaScript bundles.
+- Every local reference from `index.html` resolves to a file in this package.
+- The source files contain no historical version tokens or obsolete `bento` identifiers.
 
-```bash
-pnpm install --frozen-lockfile
-pnpm run check
-pnpm run build
-```
+## Naming changes
 
-Las comprobaciones validan la sintaxis de JavaScript antes y después de la minificación. La compilación de Lightning CSS también procesa la hoja de estilos fuente antes de generar el archivo publicado.
+| Previous name | Refactored name |
+|---|---|
+| `skills-v13-standalone` | `skill-inventory` |
+| `project-grid--v13` | `project-grid--featured` |
+| `bento-grid` / `bento-card` | `about-grid` / `about-card` |
+| `bento-modal` | `about-modal` |
+| `coin-fx__v2` / `coin-fx__v3` | `coin-fx__trail` / `coin-fx__token` |
+| `--ink`, `--cyan`, `--pixel` | semantic `--color-*` and `--font-*` tokens |
 
-## Comprobación de archivos publicados
+## File size snapshot
 
-`index.html` carga los siguientes paquetes de producción:
+| File | Raw size | Gzip size |
+|---|---:|---:|
+| HTML | 52.7 KB | 8.3 KB |
+| CSS | 155.5 KB | 33.4 KB |
+| JavaScript | 57.5 KB | 15.4 KB |
+| HTML source | 61.5 KB | 8.7 KB |
+| CSS source | 164.1 KB | 29.6 KB |
+| JavaScript source | 63.3 KB | 16.6 KB |
+| CSS production | 120.0 KB | 23.3 KB |
+| JavaScript production | 47.0 KB | 14.0 KB |
 
-```text
-styles.min.css
-script.min.js
-```
+## Publishing behavior
 
-Después de ejecutar la compilación, súbelos junto con `index.html` y `assets/`.
-
-## Integridad opcional
-
-`SHA256SUMS.txt` contiene huellas SHA-256 de archivos relevantes. En macOS, Linux o WSL puedes verificarlas con:
-
-```bash
-sha256sum -c SHA256SUMS.txt
-```
-
-Vuelve a generar el archivo de sumas después de cambiar alguno de los recursos listados.
+- `index.html` loads the production bundles `styles.min.css` and `script.min.js`.
+- Readable source remains in `styles.css` and `script.js`.
+- `npm run build` regenerates the production bundles after changes.
