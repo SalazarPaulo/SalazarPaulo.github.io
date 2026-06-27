@@ -1,15 +1,1456 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paulo | Portfolio</title>
-    <script type="module" crossorigin src="/assets/index-7023f44f.js"></script>
-    <link rel="stylesheet" href="/assets/index-b27b6bf1.css">
+    <!-- ==================== DOCUMENT METADATA & ASSETS ==================== -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta
+      content="Portafolio arcade de Pedro Salazar: software, interfaces, IA y proyectos."
+      name="description"
+    />
+    <title>DEV ARCADE · Pedro Salazar</title>
+
+    <!-- Site icons -->
+    <link
+      href="assets/icons/logo.svg?v=3"
+      rel="icon"
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <link
+      href="assets/icons/favicon-32.png?v=3"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link href="assets/icons/favicon.ico?v=3" rel="shortcut icon" />
+    <link
+      href="assets/icons/apple-touch-icon.png?v=3"
+      rel="apple-touch-icon"
+      sizes="180x180"
+    />
+
+    <!-- Google Fonts serves WOFF2 to modern browsers; only the weights used by this UI are requested. -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Space+Mono:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Production bundles. Edit styles.css and script.js, then run pnpm run build. -->
+    <link href="styles.min.css" rel="stylesheet" />
+    <meta content="#07071a" name="theme-color" />
+    <meta content="index, follow" name="robots" />
   </head>
-  <body>
-    <div id="root"></div>
-    
+  <body data-palette="neon" data-resolved-theme="dark" data-theme="system">
+    <!-- ==================== AMBIENT BACKGROUND ==================== -->
+    <main aria-label="Portafolio arcade de Pedro Salazar" class="arcade-stage">
+      <div aria-hidden="true" class="ambient ambient--one"></div>
+      <div aria-hidden="true" class="ambient ambient--two"></div>
+      <div aria-hidden="true" class="ambient ambient--three"></div>
+      <!-- ==================== ARCADE CABINET ==================== -->
+      <section aria-label="Máquina arcade interactiva" class="arcade-cabinet">
+        <!-- ---------- 01 · MARQUEE MODULE ---------- -->
+        <header class="cabinet-top marquee-module">
+          <div aria-hidden="true" class="marquee-glow"></div>
+          <div aria-hidden="true" class="marquee-lamps">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="marquee">
+            <span>✦</span><strong>DEV ARCADE</strong><span>✦</span>
+          </div>
+          <p>PLAYER 01 · PEDRO SALAZAR · SOFTWARE DEVELOPER</p>
+        </header>
+        <div class="cabinet-body">
+          <!-- ---------- 02 · CRT SCREEN MODULE ---------- -->
+          <section
+            aria-label="Módulo central de pantalla CRT"
+            class="screen-module"
+          >
+            <i aria-hidden="true" class="side-light side-light--left"></i>
+            <i aria-hidden="true" class="side-light side-light--right"></i>
+            <i aria-hidden="true" class="tube tube--top"></i>
+            <i aria-hidden="true" class="tube tube--bottom"></i>
+            <i aria-hidden="true" class="corner-light corner-light--tl"></i>
+            <i aria-hidden="true" class="corner-light corner-light--tr"></i>
+            <i aria-hidden="true" class="corner-light corner-light--bl"></i>
+            <i aria-hidden="true" class="corner-light corner-light--br"></i>
+            <section
+              aria-label="Pantalla CRT del portafolio"
+              class="screen-shell"
+            >
+              <!-- CRT STATUS BAR & QUICK ACTIONS -->
+              <header class="screen-header">
+                <span class="screen-header__live"
+                  ><i></i
+                  ><span data-i18n="systemOnline">SYSTEM ONLINE</span></span
+                >
+                <span class="screen-header__middle" id="screen-status"
+                  >LEVEL SELECT · HOME</span
+                >
+                <div class="screen-header__actions">
+                  <button
+                    aria-label="Cambiar tema"
+                    class="mini-action"
+                    id="theme-toggle"
+                    type="button"
+                  >
+                    <span aria-hidden="true">◐</span
+                    ><span id="theme-toggle-label">NIGHT</span>
+                  </button>
+                  <button
+                    aria-pressed="true"
+                    class="mini-action"
+                    id="sound-toggle"
+                    type="button"
+                  >
+                    <span aria-hidden="true">♫</span
+                    ><span id="sound-toggle-label">AMBIENT</span>
+                  </button>
+                  <button
+                    aria-label="Abrir configuración"
+                    class="mini-action mini-action--gear"
+                    id="settings-trigger"
+                    type="button"
+                  >
+                    ⚙
+                  </button>
+                </div>
+              </header>
+              <!-- CRT LAYERS: CANVAS, SCANLINES, NOISE & VIGNETTE -->
+              <div class="screen-frame">
+                <canvas aria-hidden="true" id="arcade-canvas"></canvas>
+                <div aria-hidden="true" class="scanlines"></div>
+                <div aria-hidden="true" class="screen-noise"></div>
+                <div aria-hidden="true" class="screen-vignette"></div>
+                <div
+                  aria-hidden="true"
+                  class="screen-notice"
+                  id="screen-notice"
+                  role="status"
+                ></div>
+                <!-- CRT PAGE ROUTER -->
+                <div
+                  aria-live="polite"
+                  class="screen-content"
+                  id="screen-content"
+                >
+                  <!-- PAGE · HOME -->
+                  <section
+                    class="screen-page screen-page--active"
+                    data-page="home"
+                  >
+                    <div class="home-layout">
+                      <div class="home-title">
+                        <p class="eyebrow" data-i18n="homeEyebrow">
+                          PLAYER 01 · SOFTWARE BUILDER
+                        </p>
+                        <h1>PEDRO<br />SALAZAR<span class="cursor">_</span></h1>
+                        <p class="hero-copy" data-i18n="homeCopy">
+                          Software developer focused on web experiences, desktop
+                          applications, data-connected systems and applied AI.
+                        </p>
+                        <div class="status-line">
+                          <span class="status-dot"></span
+                          ><span data-i18n="homeReady">READY TO BUILD</span>
+                        </div>
+                      </div>
+                      <div class="home-panels">
+                        <article class="pixel-card pixel-card--stats">
+                          <p class="pixel-card__label" data-i18n="statsLabel">
+                            PLAYER STATS
+                          </p>
+                          <div class="mini-stats">
+                            <div>
+                              <strong>2022</strong
+                              ><span data-i18n="statsStart">START</span>
+                            </div>
+                            <div>
+                              <strong>06</strong
+                              ><span data-i18n="statsProjects">PROJECTS</span>
+                            </div>
+                            <div>
+                              <strong>03</strong
+                              ><span data-i18n="statsDomains">DOMAINS</span>
+                            </div>
+                          </div>
+                        </article>
+                        <article class="pixel-card pixel-card--mission">
+                          <p class="pixel-card__label" data-i18n="missionLabel">
+                            MISSION SELECT
+                          </p>
+                          <ul class="mission-list">
+                            <li>
+                              <span>01</span>
+                              <b data-i18n="missionOne">WEB INTERFACES</b>
+                            </li>
+                            <li>
+                              <span>02</span>
+                              <b data-i18n="missionTwo">DESKTOP APPS</b>
+                            </li>
+                            <li>
+                              <span>03</span>
+                              <b data-i18n="missionThree">AI + SECURITY</b>
+                            </li>
+                          </ul>
+                        </article>
+                      </div>
+                    </div>
+                    <div class="command-hint">
+                      <span data-i18n="moveJoystick"
+                        ><br />
+                        MOUSE · PRESS JOYSTICK OR KEYS</span
+                      ><span class="command-hint__blink" data-i18n="insertHint"
+                        >INSERT COIN TO PLAY</span
+                      >
+                    </div>
+                  </section>
+                  <!-- PAGE · PROFILE -->
+                  <section class="screen-page" data-page="profile" hidden="">
+                    <p class="eyebrow" data-i18n="profileEyebrow">
+                      LEVEL SELECT · PLAYER PROFILE
+                    </p>
+                    <div class="profile-layout">
+                      <div
+                        aria-label="Blueprint illustration"
+                        class="profile-pixel-portrait"
+                        role="img"
+                      >
+                        <img
+                          alt="Blueprint illustration of the cursed mansion game concept"
+                          decoding="async"
+                          height="1012"
+                          loading="lazy"
+                          sizes="(max-width: 760px) 32vw, 158px"
+                          src="assets/images/mansion-blueprint-800.webp"
+                          srcset="
+                            assets/images/mansion-blueprint-480.webp 480w,
+                            assets/images/mansion-blueprint-800.webp 800w
+                          "
+                          width="800"
+                        />
+                      </div>
+                      <div class="profile-copy">
+                        <h2 data-i18n="profileTitle">SOFTWARE DEVELOPER</h2>
+                        <p data-i18n="profileCopy">
+                          I build digital products with Java, Python,
+                          JavaScript, React, JavaFX, SQL and Tailwind CSS. My
+                          work connects interfaces, application flows, databases
+                          and applied AI.
+                        </p>
+                        <div class="terminal-block">
+                          <span data-i18n="profileLineOne"
+                            >&gt; experience: independent developer ·
+                            2022—present</span
+                          ><span data-i18n="profileLineTwo"
+                            >&gt; background: Systems &amp; Computer
+                            Engineering</span
+                          ><span data-i18n="profileLineThree"
+                            >&gt; status: academic requirements completed</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- PAGE · PROJECTS -->
+                  <section class="screen-page" data-page="projects" hidden="">
+                    <p class="eyebrow" data-i18n="projectsEyebrow">
+                      LEVEL SELECT · PROJECTS
+                    </p>
+                    <h2 data-i18n="projectsTitle">FEATURED PROJECTS</h2>
+                    <div class="project-grid project-grid--featured">
+                      <article
+                        aria-label="Open details for Portfolio Cristina Granda"
+                        class="project-card project-card--feature"
+                        data-project="cristina"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span class="project-card__number">01</span>
+                        <h3>Portfolio Cristina Granda</h3>
+                        <div class="tag-row tag-row--logos">
+                          <span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/react.svg"
+                            />REACT</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/threejs.svg"
+                            />THREE.JS</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/tailwind.svg"
+                            />TAILWIND</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/css3.svg"
+                            />CSS</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/skills/html5.svg"
+                            />HTML</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/skills/javascript.svg"
+                            />JAVASCRIPT</span
+                          >
+                        </div>
+                        <div class="project-actions">
+                          <a
+                            class="project-action"
+                            href="https://github.com/SalazarPaulo/Portfolio_Cristina_Locutor"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            ><img
+                              alt=""
+                              class="image-size-buttons"
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/github.svg"
+                            />GITHUB ↗</a
+                          ><a
+                            class="project-action"
+                            href="https://cristinagranda.es/"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            >LIVE ↗</a
+                          >
+                        </div>
+                      </article>
+                      <article
+                        aria-label="Open details for Bank Project"
+                        class="project-card"
+                        data-project="bank"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span class="project-card__number">02</span>
+                        <h3>BANK PROJECT</h3>
+                        <div class="tag-row tag-row--logos">
+                          <span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/java.svg"
+                            />JAVA</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/javafx.svg"
+                            />JAVAFX</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/css3.svg"
+                            />CSS</span
+                          >
+                        </div>
+                        <div class="project-actions">
+                          <a
+                            class="project-action"
+                            href="https://github.com/SalazarPaulo/Bank-Project"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            ><img
+                              alt=""
+                              class="image-size-buttons"
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/github.svg"
+                            />GITHUB ↗</a
+                          >
+                        </div>
+                      </article>
+                      <article
+                        aria-label="Open details for N-Queens Visualizer"
+                        class="project-card"
+                        data-project="queens"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span class="project-card__number">03</span>
+                        <h3>N-QUEENS VISUALIZER</h3>
+                        <div class="tag-row tag-row--logos">
+                          <span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/python.svg"
+                            />PYTHON</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/ai-search.svg"
+                            />AI SEARCH</span
+                          >
+                        </div>
+                        <div class="project-actions">
+                          <a
+                            class="project-action"
+                            href="https://github.com/SalazarPaulo/n-queens-search-visualizer"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            ><img
+                              alt=""
+                              class="image-size-buttons"
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/github.svg"
+                            />GITHUB ↗</a
+                          >
+                        </div>
+                      </article>
+                    </div>
+                  </section>
+                  <!-- PAGE · SKILLS -->
+                  <section class="screen-page" data-page="skills" hidden="">
+                    <div class="skill-inventory">
+                      <p
+                        class="skill-inventory__eyebrow"
+                        data-i18n="skillsEyebrow"
+                      >
+                        LEVEL SELECT · POWER-UP INVENTORY
+                      </p>
+                      <h2
+                        class="skill-inventory__title"
+                        data-i18n="skillsTitle"
+                      >
+                        SKILL LOADOUT
+                      </h2>
+                      <div
+                        aria-label="Skill categories"
+                        class="skill-inventory__grid"
+                      >
+                        <article
+                          class="skill-inventory__card skill-inventory__card--code"
+                        >
+                          <span class="skill-inventory__id">01</span>
+                          <h3 data-i18n="skillCode">CODE</h3>
+                          <div class="skill-inventory__mini-grid">
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Java"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/java.svg"
+                              /><strong>JAVA</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Python"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/python.svg"
+                              /><strong>PYTHON</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="JavaScript"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/skills/javascript.svg"
+                              /><strong>JS</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="C"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/skills/c.svg"
+                              /><strong>C</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="C#"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/csharp.svg"
+                              /><strong>C#</strong>
+                            </div>
+                          </div>
+                        </article>
+                        <article
+                          class="skill-inventory__card skill-inventory__card--web"
+                        >
+                          <span class="skill-inventory__id">02</span>
+                          <h3 data-i18n="skillWeb">WEB</h3>
+                          <div class="skill-inventory__mini-grid">
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="React"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/react.svg"
+                              /><strong>REACT</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Spring Boot"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/springboot.svg"
+                              /><strong>SPRING <br />BOOT</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Tailwind CSS"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/tailwind.svg"
+                              /><strong>TAILWIND</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="HTML"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/skills/html5.svg"
+                              /><strong>HTML</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="CSS"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/css3.svg"
+                              /><strong>CSS</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="THREEJS"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/threejs.svg"
+                              /><strong>THREEJS</strong>
+                            </div>
+                          </div>
+                        </article>
+                        <article
+                          class="skill-inventory__card skill-inventory__card--data"
+                        >
+                          <span class="skill-inventory__id">03</span>
+                          <h3 data-i18n="skillData">DATA</h3>
+                          <div class="skill-inventory__mini-grid">
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="MySQL"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/mysql.svg"
+                              /><strong>MYSQL</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Oracle"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/oracle.svg"
+                              /><strong>ORACLE</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="SQL Server"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/sqlserver.svg"
+                              /><strong
+                                >SQL <br />
+                                SERVER</strong
+                              >
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="SQLite"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/sqlite.svg"
+                              /><strong>SQLite</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="SQL"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/skills/database.svg"
+                              /><strong>SQL</strong>
+                            </div>
+                          </div>
+                        </article>
+                        <article
+                          class="skill-inventory__card skill-inventory__card--build"
+                        >
+                          <span class="skill-inventory__id">04</span>
+                          <h3 data-i18n="skillBuild">BUILD</h3>
+                          <div class="skill-inventory__mini-grid">
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Git"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/git.svg"
+                              /><strong>GIT</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="GitHub"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/github.svg"
+                              /><strong>GITHUB</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Figma"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/figma.svg"
+                              /><strong>FIGMA</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Jira"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/jira.svg"
+                              /><strong>JIRA</strong>
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Android Studio"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/android.svg"
+                              /><strong
+                                >ANDROID <br />
+                                STUDIO</strong
+                              >
+                            </div>
+                            <div class="skill-inventory__mini">
+                              <img
+                                alt="Unity"
+                                decoding="async"
+                                loading="lazy"
+                                src="assets/tech/unity.svg"
+                              /><strong>UNITY</strong>
+                            </div>
+                          </div>
+                        </article>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- PAGE · CONTACT -->
+                  <section
+                    class="screen-page screen-page--contact"
+                    data-page="contact"
+                    hidden=""
+                  >
+                    <p class="eyebrow" data-i18n="contactEyebrow">
+                      LEVEL SELECT · CONTACT
+                    </p>
+                    <div class="contact-layout">
+                      <div>
+                        <h2 data-i18n-html="contactTitle">
+                          LET'S BUILD<br />SOMETHING.
+                        </h2>
+                        <p data-i18n="contactCopy">Available to collaborate.</p>
+                      </div>
+                      <div class="contact-console">
+                        <button
+                          class="contact-link contact-link--button"
+                          id="contact-form-trigger"
+                          type="button"
+                        >
+                          <img
+                            alt="Gmail"
+                            class="contact-icon contact-icon--mail"
+                            decoding="async"
+                            loading="lazy"
+                            src="assets/icons/gmail.svg"
+                          /><span class="contact-copy"
+                            ><em data-i18n="contactMailLabel">GMAIL</em
+                            ><strong data-i18n="contactMailTitle"
+                              >SEND A MESSAGE</strong
+                            ></span
+                          >
+                        </button>
+                        <a
+                          class="contact-link"
+                          href="https://github.com/SalazarPaulo"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          ><img
+                            alt="GitHub"
+                            class="contact-icon contact-icon--github"
+                            decoding="async"
+                            loading="lazy"
+                            src="assets/icons/github.svg"
+                          /><span class="contact-copy"
+                            ><em>GITHUB</em
+                            ><strong>@SalazarPaulo ↗</strong></span
+                          ></a
+                        >
+                        <a
+                          class="contact-link"
+                          href="https://www.linkedin.com/in/pedro-salazar-b00261212/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          ><img
+                            alt="LinkedIn"
+                            class="contact-icon contact-icon--linkedin"
+                            decoding="async"
+                            loading="lazy"
+                            src="assets/icons/linkedin.svg"
+                          /><span class="contact-copy"
+                            ><em>LINKEDIN</em
+                            ><strong data-i18n="contactLinkedInTitle"
+                              >VIEW PROFILE ↗</strong
+                            ></span
+                          ></a
+                        >
+                      </div>
+                    </div>
+                  </section>
+                  <!-- PAGE · ABOUT ME -->
+                  <section class="screen-page" data-page="about" hidden="">
+                    <p class="eyebrow" data-i18n="aboutEyebrow">
+                      LEVEL SELECT · ABOUT ME
+                    </p>
+                    <h2 data-i18n="aboutTitle">ABOUT ME</h2>
+                    <div class="about-grid">
+                      <button
+                        class="about-card"
+                        data-about="experience"
+                        type="button"
+                      >
+                        <span data-i18n="aboutExperience">EXPERIENCE</span>
+                      </button>
+                      <button
+                        class="about-card about-card--accent"
+                        data-about="research"
+                        type="button"
+                      >
+                        <span data-i18n="aboutResearch">RESEARCH</span>
+                      </button>
+                      <button
+                        class="about-card"
+                        data-about="education"
+                        type="button"
+                      >
+                        <span data-i18n="aboutEducation">EDUCATION</span>
+                      </button>
+                      <div aria-label="Pedro Salazar" class="about-portrait">
+                        <img
+                          alt="Pedro Salazar"
+                          decoding="async"
+                          height="853"
+                          loading="lazy"
+                          sizes="(max-width: 760px) 46vw, (max-width: 1280px) 24vw, 280px"
+                          src="assets/images/pedro-salazar-640.webp"
+                          srcset="
+                            assets/images/pedro-salazar-320.webp 320w,
+                            assets/images/pedro-salazar-640.webp 640w,
+                            assets/images/pedro-salazar.webp     900w
+                          "
+                          width="640"
+                        /><button
+                          class="cv-trigger"
+                          data-i18n="cvTrigger"
+                          id="cv-trigger"
+                          type="button"
+                        >
+                          CV / RESUME
+                        </button>
+                      </div>
+                      <button
+                        class="about-card"
+                        data-about="certifications"
+                        type="button"
+                      >
+                        <span data-i18n="aboutCertifications"
+                          >CERTIFICATIONS</span
+                        >
+                      </button>
+                      <button
+                        class="about-card about-card--projects"
+                        data-about="projects"
+                        type="button"
+                      >
+                        <span data-i18n="aboutProjects">PROJECT VAULT</span>
+                      </button>
+                    </div>
+                  </section>
+                  <!-- PAGE · GAME SELECT -->
+                  <section class="screen-page" data-page="games" hidden="">
+                    <div class="game-intro">
+                      <p class="eyebrow" data-i18n="gamesEyebrow">
+                        FREE PLAY ENABLED
+                      </p>
+                      <h2 data-i18n="gamesTitle">CHOOSE A GAME</h2>
+                      <p data-i18n="gamesCopy">
+                        Insert a coin, choose a mode and return to the portfolio
+                        whenever you want.
+                      </p>
+                      <button
+                        class="back-key game-intro__return"
+                        data-i18n="returnPortfolio"
+                        data-target="home"
+                        type="button"
+                      >
+                        RETURN TO PORTFOLIO
+                      </button>
+                    </div>
+                    <!-- Accordion of games. -->
+                    <div
+                      aria-label="Game selection"
+                      class="game-accordion"
+                      data-active-game="fighters"
+                      id="game-accordion"
+                    >
+                      <button
+                        aria-label="Previous game"
+                        class="game-accordion__nav game-accordion__nav--previous"
+                        data-game-accordion="previous"
+                        type="button"
+                      >
+                        ◀
+                      </button>
+                      <article
+                        aria-expanded="true"
+                        aria-label="Select Neon Fighters"
+                        class="game-accordion__panel game-accordion__panel--fighters is-active"
+                        data-game-panel="fighters"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span class="game-accordion__id">01</span>
+                        <span
+                          class="game-accordion__status game-accordion__status--playable"
+                          data-i18n="playableNow"
+                        >
+                          PLAYABLE NOW
+                        </span>
+                        <div class="game-accordion__layout">
+                          <div
+                            aria-hidden="true"
+                            class="game-accordion__preview fighter-stage"
+                          >
+                            <i class="fighter fighter--left"></i>
+                            <i class="fighter fighter--right"></i>
+                            <b>VS</b>
+                          </div>
+                          <div class="game-accordion__content">
+                            <strong>NEON FIGHTERS</strong>
+                            <small data-i18n="neonCopy">
+                              Original mini-fighter:CSS + JavaScript. A/D move ·
+                              W jump · F attack.
+                            </small>
+                            <button
+                              class="game-launch"
+                              data-i18n="playNow"
+                              id="neon-launch"
+                              type="button"
+                            >
+                              PLAY NOW
+                            </button>
+                          </div>
+                        </div>
+                      </article>
+                      <article
+                        aria-expanded="false"
+                        aria-label="Select Three.js Arena"
+                        class="game-accordion__panel game-accordion__panel--three"
+                        data-game-panel="three"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span class="game-accordion__id">02</span>
+                        <span
+                          class="game-accordion__status game-accordion__status--construction"
+                          data-i18n="construction"
+                        >
+                          IN CONSTRUCTION
+                        </span>
+                        <div class="game-accordion__layout">
+                          <div
+                            aria-hidden="true"
+                            class="game-accordion__preview three-stage"
+                          >
+                            <i></i><i></i><i></i><b>3D</b>
+                          </div>
+                          <div class="game-accordion__content">
+                            <strong>THREE.JS ARENA</strong>
+                            <small data-i18n="threeCopy">
+                              Upcoming 3D world and immersive experience.
+                            </small>
+                            <button
+                              class="game-launch game-launch--disabled"
+                              data-i18n="construction"
+                              disabled=""
+                              type="button"
+                            >
+                              IN CONSTRUCTION
+                            </button>
+                          </div>
+                        </div>
+                      </article>
+                      <button
+                        aria-label="Next game"
+                        class="game-accordion__nav game-accordion__nav--next"
+                        data-game-accordion="next"
+                        type="button"
+                      >
+                        ▶
+                      </button>
+                    </div>
+                  </section>
+                  <!-- PAGE · NEON FIGHTERS -->
+                  <section
+                    class="screen-page screen-page--game"
+                    data-page="neon-fighters"
+                    hidden=""
+                  >
+                    <div class="fighter-page-head">
+                      <div>
+                        <p class="eyebrow" data-i18n="fighterEyebrow">
+                          NEON FIGHTERS
+                        </p>
+                        <h2 data-i18n="fighterTitle">PLAYER 01 vs CPU</h2>
+                      </div>
+                      <div class="fighter-actions">
+                        <button
+                          class="fighter-utility"
+                          data-i18n="fighterRestart"
+                          id="fight-restart"
+                          type="button"
+                        >
+                          RESTART</button
+                        ><button
+                          class="fighter-utility"
+                          data-i18n="fighterExit"
+                          data-target="games"
+                          type="button"
+                        >
+                          EXIT
+                        </button>
+                      </div>
+                    </div>
+                    <div class="fight-hud">
+                      <div class="life-card">
+                        <span>P1</span>
+                        <div class="life-bar"><i id="player-health"></i></div>
+                      </div>
+                      <strong id="fight-round">ROUND 01</strong>
+                      <div class="life-card life-card--cpu">
+                        <div class="life-bar"><i id="cpu-health"></i></div>
+                        <span>CPU</span>
+                      </div>
+                    </div>
+                    <div class="neon-arena" id="neon-arena">
+                      <div aria-hidden="true" class="arena-sun"></div>
+                      <div aria-hidden="true" class="arena-city"></div>
+                      <div aria-hidden="true" class="arena-grid"></div>
+                      <div
+                        aria-hidden="true"
+                        class="hit-flash"
+                        id="hit-flash"
+                      ></div>
+                      <div
+                        class="fighter fighter--player"
+                        id="player-fighter"
+                        style="--x: 24; --facing: 1"
+                      >
+                        <span class="fighter__shadow"></span
+                        ><span class="fighter__head"></span
+                        ><span class="fighter__body"></span
+                        ><span class="fighter__arm fighter__arm--front"></span
+                        ><span class="fighter__arm fighter__arm--back"></span
+                        ><span class="fighter__leg fighter__leg--front"></span
+                        ><span class="fighter__leg fighter__leg--back"></span>
+                      </div>
+                      <div
+                        class="fighter fighter--cpu"
+                        id="cpu-fighter"
+                        style="--x: 76; --facing: -1"
+                      >
+                        <span class="fighter__shadow"></span
+                        ><span class="fighter__head"></span
+                        ><span class="fighter__body"></span
+                        ><span class="fighter__arm fighter__arm--front"></span
+                        ><span class="fighter__arm fighter__arm--back"></span
+                        ><span class="fighter__leg fighter__leg--front"></span
+                        ><span class="fighter__leg fighter__leg--back"></span>
+                      </div>
+                      <div class="fight-message" id="fight-message">FIGHT!</div>
+                    </div>
+                    <div class="fight-controls">
+                      <span data-i18n="fighterMove">A / D MOVE</span
+                      ><span data-i18n="fighterJump">W JUMP</span
+                      ><span data-i18n="fighterAttack">F ATTACK</span>
+                      <div>
+                        <button data-game-action="left" type="button">◀</button
+                        ><button data-game-action="jump" type="button">▲</button
+                        ><button data-game-action="attack" type="button">
+                          F</button
+                        ><button data-game-action="right" type="button">
+                          ▶
+                        </button>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- PAGE · SETTINGS -->
+                  <section class="screen-page" data-page="settings" hidden="">
+                    <p class="eyebrow" data-i18n="settingsEyebrow">
+                      SYSTEM MENU · LOCAL SETTINGS
+                    </p>
+                    <h2 data-i18n="settingsTitle">SETTINGS</h2>
+                    <div class="settings-layout">
+                      <article class="settings-card">
+                        <h3 data-i18n="settingsTheme">THEME MODE</h3>
+                        <div
+                          aria-label="Theme mode"
+                          class="segmented"
+                          role="group"
+                        >
+                          <button
+                            data-i18n="themeSystem"
+                            data-theme-choice="system"
+                            type="button"
+                          >
+                            SYSTEM</button
+                          ><button
+                            data-i18n="themeNight"
+                            data-theme-choice="dark"
+                            type="button"
+                          >
+                            NIGHT</button
+                          ><button
+                            data-i18n="themeLight"
+                            data-theme-choice="light"
+                            type="button"
+                          >
+                            LIGHT
+                          </button>
+                        </div>
+                        <p class="setting-copy" data-i18n="settingsThemeCopy">
+                          SYSTEM is the default mode and detects your device
+                          preference.
+                        </p>
+                      </article>
+                      <article class="settings-card">
+                        <h3 data-i18n="settingsAudio">AMBIENT AUDIO</h3>
+                        <label class="switch-row"
+                          ><span data-i18n="settingsMusic"
+                            >Continuous arcade music</span
+                          ><input
+                            id="ambient-toggle"
+                            type="checkbox" /><i></i></label
+                        ><label class="range-row"
+                          ><span data-i18n="settingsVolume">VOLUME</span
+                          ><input
+                            id="volume-control"
+                            max="100"
+                            min="0"
+                            type="range"
+                            value="58"
+                        /></label>
+                      </article>
+                      <article class="settings-card">
+                        <h3 data-i18n="settingsFx">VISUAL FX</h3>
+                        <label class="switch-row"
+                          ><span data-i18n="settingsLights"
+                            >Lights and glow</span
+                          ><input
+                            id="lights-toggle"
+                            type="checkbox" /><i></i></label
+                        ><label class="switch-row"
+                          ><span data-i18n="settingsCrt">CRT scanlines</span
+                          ><input id="crt-toggle" type="checkbox" /><i></i
+                        ></label>
+                      </article>
+                      <article class="settings-card">
+                        <h3 data-i18n="settingsLetters">LETTER COLOR</h3>
+                        <div
+                          aria-label="Letter color"
+                          class="palette-picker"
+                          role="group"
+                        >
+                          <button data-palette-choice="neon" type="button">
+                            <i></i> NEON</button
+                          ><button data-palette-choice="amber" type="button">
+                            <i></i> AMBER</button
+                          ><button data-palette-choice="ice" type="button">
+                            <i></i> ICE</button
+                          ><button data-palette-choice="lime" type="button">
+                            <i></i> LIME
+                          </button>
+                        </div>
+                      </article>
+                      <article class="settings-card">
+                        <h3 data-i18n="settingsTextSize">TEXT SIZE</h3>
+                        <label class="range-row"
+                          ><span data-i18n="settingsBodyText">BODY TEXT</span
+                          ><input
+                            id="body-scale-control"
+                            max="124"
+                            min="90"
+                            type="range"
+                            value="100" /></label
+                        ><label class="range-row"
+                          ><span data-i18n="settingsTitles">TITLES</span
+                          ><input
+                            id="title-scale-control"
+                            max="124"
+                            min="90"
+                            type="range"
+                            value="100"
+                        /></label>
+                      </article>
+                      <article class="settings-card">
+                        <h3 data-i18n="settingsLanguage">LANGUAGE</h3>
+                        <details class="language-accordion">
+                          <summary id="language-summary">
+                            ENGLISH · DEFAULT
+                          </summary>
+                          <div class="language-choice-panel">
+                            <button data-language-choice="en" type="button">
+                              ENGLISH</button
+                            ><button data-language-choice="es" type="button">
+                              ESPAÑOL
+                            </button>
+                          </div>
+                        </details>
+                      </article>
+                    </div>
+                    <div class="settings-footer">
+                      <span data-i18n="settingsCache" id="cache-status"
+                        >SAVED LOCALLY IN THIS BROWSER</span
+                      ><button
+                        class="back-key"
+                        data-i18n="settingsReset"
+                        id="reset-settings"
+                        type="button"
+                      >
+                        RESET DEFAULT</button
+                      ><button
+                        class="back-key"
+                        data-i18n="settingsReturn"
+                        id="settings-return"
+                        type="button"
+                      >
+                        RETURN
+                      </button>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <!-- CRT FOOTER: LOCATION, INPUT HINTS & CREDITS -->
+              <div class="screen-footer">
+                <span id="screen-location">HOME / INSERT COIN</span
+                ><span id="screen-footer-hint"
+                  >A S D F G · ARROWS · ENTER · SPACE COIN</span
+                ><span
+                  ><span data-i18n="credits">CREDITS</span>
+                  <b id="credits-count">00</b></span
+                >
+              </div>
+            </section>
+          </section>
+          <!-- ---------- 03 · CONTROL CONSOLE MODULE ---------- -->
+          <section aria-label="Módulo de consola arcade" class="control-module">
+            <!-- JOYSTICK, NAVIGATION BUTTONS, START, COIN & SETTINGS -->
+            <section aria-label="Controles del arcade" class="control-panel">
+              <div aria-hidden="true" class="speaker speaker--left">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div
+                aria-label="Palanca que sigue el cursor por toda la pantalla."
+                class="joystick-zone"
+                id="joystick-zone"
+              >
+                <span class="joystick-label" data-i18n="move">MOVE</span>
+                <div aria-hidden="true" class="joystick-base">
+                  <div class="joystick-stick" id="joystick-stick">
+                    <div class="joystick-ball" id="joystick-ball"></div>
+                  </div>
+                </div>
+              </div>
+              <div aria-label="Botones de navegación" class="arcade-buttons">
+                <button
+                  class="arcade-button arcade-button--a"
+                  data-target="profile"
+                  type="button"
+                >
+                  <span>A</span
+                  ><small data-i18n="buttonProfile">PROFILE</small></button
+                ><button
+                  class="arcade-button arcade-button--b"
+                  data-target="projects"
+                  type="button"
+                >
+                  <span>S</span
+                  ><small data-i18n="buttonProjects">PROJECTS</small></button
+                ><button
+                  class="arcade-button arcade-button--c"
+                  data-target="skills"
+                  type="button"
+                >
+                  <span>D</span
+                  ><small data-i18n="buttonSkills">SKILLS</small></button
+                ><button
+                  class="arcade-button arcade-button--d"
+                  data-target="contact"
+                  type="button"
+                >
+                  <span>F</span
+                  ><small data-i18n="buttonContact">CONTACT</small></button
+                ><button
+                  class="arcade-button arcade-button--e"
+                  data-target="about"
+                  type="button"
+                >
+                  <span>G</span><small data-i18n="buttonAbout">ABOUT</small>
+                </button>
+              </div>
+              <div aria-label="Navegación móvil" class="mobile-page-controls">
+                <button
+                  aria-label="Página anterior"
+                  class="mobile-page-control"
+                  data-mobile-page="previous"
+                  type="button"
+                >
+                  ◀
+                </button>
+                <button
+                  aria-label="Página siguiente"
+                  class="mobile-page-control"
+                  data-mobile-page="next"
+                  type="button"
+                >
+                  ▶
+                </button>
+              </div>
+              <button class="start-button" id="start-button" type="button">
+                <span data-i18n="buttonStart">START</span
+                ><small data-i18n="buttonHome">HOME</small>
+              </button>
+              <button
+                aria-label="Insertar moneda y elegir juego"
+                class="coin-slot"
+                id="coin-button"
+                type="button"
+              >
+                <i class="coin-slot__slot"></i
+                ><span class="coin-slot__label"
+                  ><span data-i18n="buttonInsert">INSERT</span><br /><span
+                    data-i18n="buttonCoin"
+                    >COIN</span
+                  ></span
+                >
+              </button>
+              <button
+                aria-label="Abrir configuración"
+                class="settings-key"
+                id="settings-key"
+                type="button"
+              >
+                ⚙<small data-i18n="buttonCfg">CFG</small>
+              </button>
+              <div aria-hidden="true" class="speaker speaker--right">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </section>
+            <!-- STYLE BLUE CONSOLE NOTICE -->
+            <div
+              aria-live="polite"
+              class="toast console-toast"
+              id="toast"
+              role="status"
+            ></div>
+          </section>
+        </div>
+        <!-- CABINET FOOTER -->
+        <footer aria-hidden="true" class="cabinet-footer">
+          <span>© 2026 PEDRO SALAZAR</span><span>MADE WITH HTML · CSS · JS</span
+          ><span>NO SCROLL MODE</span>
+        </footer>
+      </section>
+      <!-- COIN INSERTION VISUAL EFFECT -->
+      <div aria-hidden="true" class="coin-fx" id="coin-fx">
+        <span class="coin-fx__trail"></span><span class="coin-fx__token"></span>
+      </div>
+    </main>
+    <!-- ==================== MODALS ==================== -->
+    <!-- ABOUT ME -->
+    <div
+      aria-hidden="true"
+      aria-labelledby="about-modal-title"
+      aria-modal="true"
+      class="about-modal"
+      id="about-modal"
+      role="dialog"
+    >
+      <div class="about-modal__panel">
+        <button
+          aria-label="Close detail"
+          class="about-modal__close"
+          id="about-modal-close"
+          type="button"
+        >
+          ×
+        </button>
+        <p class="eyebrow" id="about-modal-kicker">BONUS DETAIL</p>
+        <h2 id="about-modal-title">Detail</h2>
+        <div id="about-modal-body"></div>
+      </div>
+    </div>
+    <!-- PROJECT DETAIL MODAL -->
+    <div
+      aria-hidden="true"
+      aria-labelledby="project-modal-title"
+      aria-modal="true"
+      class="about-modal"
+      id="project-modal"
+      role="dialog"
+    >
+      <div class="about-modal__panel">
+        <button
+          aria-label="Close project"
+          class="about-modal__close"
+          id="project-modal-close"
+          type="button"
+        >
+          ×
+        </button>
+        <p class="eyebrow" id="project-modal-kicker">FEATURED PROJECT</p>
+        <h2 id="project-modal-title">Project detail</h2>
+        <div id="project-modal-body"></div>
+        <div class="modal-actions" id="project-modal-actions"></div>
+      </div>
+    </div>
+    <!-- CV DETAIL & DOWNLOAD MODAL -->
+    <div
+      aria-hidden="true"
+      aria-labelledby="cv-modal-title"
+      aria-modal="true"
+      class="about-modal"
+      id="cv-modal"
+      role="dialog"
+    >
+      <div class="about-modal__panel">
+        <button
+          aria-label="Close CV"
+          class="about-modal__close"
+          id="cv-modal-close"
+          type="button"
+        >
+          ×
+        </button>
+        <p class="eyebrow" data-i18n="cvKicker">CAREER CARD</p>
+        <h2 id="cv-modal-title">PEDRO SALAZAR · CV</h2>
+        <div class="cv-summary" id="cv-modal-content"></div>
+        <div class="modal-actions">
+          <a
+            class="project-action"
+            download=""
+            href="assets/documents/Pedro_Salazar_Resume_EN.pdf"
+            id="cv-download-primary"
+            >DOWNLOAD EN PDF</a
+          ><a
+            class="project-action"
+            download=""
+            href="assets/documents/Pedro_Salazar_Resume_ES.pdf"
+            >DESCARGAR ES PDF</a
+          >
+        </div>
+      </div>
+    </div>
+    <!-- GMAIL CONTACT FORM MODAL -->
+    <div
+      aria-hidden="true"
+      aria-labelledby="contact-modal-title"
+      aria-modal="true"
+      class="about-modal contact-modal"
+      id="contact-modal"
+      role="dialog"
+    >
+      <div class="about-modal__panel contact-modal__panel">
+        <button
+          aria-label="Close form"
+          class="about-modal__close"
+          id="contact-modal-close"
+          type="button"
+        >
+          ×
+        </button>
+        <p class="eyebrow" data-i18n="contactFormKicker">GMAIL MESSAGE FORM</p>
+        <h2 data-i18n="contactFormTitle" id="contact-modal-title">
+          SEND A MESSAGE
+        </h2>
+        <form class="contact-form" id="contact-form">
+          <label
+            ><span data-i18n="formName">YOUR NAME</span
+            ><input
+              autocomplete="name"
+              id="contact-name"
+              name="from_name"
+              required="" /></label
+          ><label
+            ><span data-i18n="formEmail">YOUR EMAIL</span
+            ><input
+              autocomplete="email"
+              id="contact-email"
+              name="from_email"
+              required=""
+              type="email" /></label
+          ><label
+            ><span data-i18n="formSubject">SUBJECT</span
+            ><input id="contact-subject" name="subject" required="" /></label
+          ><label
+            ><span data-i18n="formMessage">MESSAGE</span
+            ><textarea
+              id="contact-message"
+              name="message"
+              required=""
+              rows="5"
+            ></textarea></label
+          ><button
+            class="project-action contact-form__send"
+            data-i18n="formSend"
+            type="submit"
+          >
+            SEND GMAIL
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- APPLICATION SCRIPT -->
+    <script defer="" src="script.min.js"></script>
   </body>
 </html>
