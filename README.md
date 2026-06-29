@@ -10,21 +10,15 @@
 
 **DEV ARCADE** es un portafolio web estático e interactivo con estética de máquina arcade y pantalla CRT. Presenta perfil profesional, proyectos, habilidades, certificaciones, currículum, contacto y un minijuego jugable, sin requerir servidor propio ni base de datos.
 
-<p align="center">
-  <img src="./assets/images/pedro-salazar.webp" width="260" alt="Retrato de Pedro Salazar" />
-</p>
-
 ---
 
 ## 🌐 Publicación
 
-El sitio puede publicarse en GitHub Pages desde la raíz del repositorio:
+El sitio esta publicado en GitHub Pages desde la raíz del repositorio:
 
 ```text
 https://<usuario>.github.io
 ```
-
-No necesita compilación para ser publicado. `index.html` carga los archivos optimizados incluidos en el proyecto.
 
 ---
 
@@ -54,7 +48,7 @@ No necesita compilación para ser publicado. `index.html` carga los archivos opt
 
 ## 📖 Descripción
 
-El proyecto transforma la navegación de un portafolio en una experiencia arcade. La interfaz simula una cabina con pantalla CRT, consola, joystick, efectos de luces, audio generado en el navegador, traducción español/inglés, temas visuales, persistencia de preferencias y navegación por pantallas internas.
+El proyecto transforma la navegación de un portafolio en una experiencia arcade donde la interfaz simula una cabina con pantalla CRT incluida una consola, joystick, efectos de luces, audio generado en el navegador, traducción español/inglés, temas visuales, persistencia de preferencias y navegación por pantallas internas.
 
 El contenido principal incluye:
 
@@ -82,7 +76,6 @@ El contenido principal incluye:
 - Iconos SVG para tecnologías, redes y medios de contacto.
 - Formulario que incorpora EmailJS únicamente cuando el usuario abre el diálogo de contacto.
 - Minijuego con teclado y controles táctiles adaptados a teléfonos.
-- Publicación directa como sitio estático en GitHub Pages.
 
 ---
 
@@ -100,26 +93,6 @@ El contenido principal incluye:
 | Imágenes | WebP + SVG | Recursos visuales de bajo peso y escalabilidad vectorial. |
 | Publicación | GitHub Pages | Hosting estático desde el repositorio. |
 | Construcción opcional | esbuild + Lightning CSS + Prettier | Minificación y validación al editar fuentes. |
-
----
-
-## 🖼️ Recursos visuales
-
-### Retrato profesional
-
-<p align="center">
-  <img src="./assets/images/pedro-salazar-640.webp" width="300" alt="Retrato profesional" />
-</p>
-
-El retrato utiliza variantes WebP para que cada pantalla descargue un tamaño apropiado.
-
-### Plano de la mansión
-
-<p align="center">
-  <img src="./assets/images/mansion-blueprint-800.webp" width="420" alt="Plano de la mansión conceptual" />
-</p>
-
-La ilustración acompaña el perfil del concepto de juego y cuenta con versiones adaptadas a pantallas pequeñas.
 
 ---
 
@@ -163,7 +136,7 @@ La ilustración acompaña el perfil del concepto de juego y cuenta con versiones
 
 ## 🧩 Arquitectura
 
-DEV ARCADE es una aplicación **estática del lado del cliente**. No usa framework, servidor de aplicación ni base de datos. La estructura separa presentación, comportamiento, recursos y servicios externos.
+DEV ARCADE es una aplicación **estática del lado del cliente**. No usa ni framework, servidor de aplicación ni base de datos. La estructura separa presentación, comportamiento, recursos y servicios externos.
 
 ```text
 index.html
@@ -344,9 +317,7 @@ El proyecto incorpora prácticas de accesibilidad desde el marcado y los control
 
 ---
 
-## 💤 Carga diferida e infinite scroll
-
-### Lazy loading: sí se utiliza
+## 💤 Carga diferida // Lazy loading
 
 El proyecto usa carga diferida para imágenes y carga condicional para servicios que no son necesarios al inicio. El objetivo es reducir competencia de red y trabajo de decodificación durante la primera visualización.
 
@@ -358,9 +329,6 @@ El proyecto usa carga diferida para imágenes y carga condicional para servicios
 | Precarga por intención | Recursos activados por hover, foco o toque de la navegación. |
 | Carga bajo demanda | Cliente EmailJS cuando se abre el diálogo de contacto. |
 
-### Infinite scroll: no se utiliza
-
-El sitio no consume un listado remoto ni presenta contenido paginado o ilimitado. Las secciones son fijas y se navegan como pantallas internas. Por ello, infinite scroll no aporta una mejora funcional o de rendimiento y no se implementa.
 
 ---
 
@@ -391,82 +359,6 @@ Servicio EmailJS
 Correo del destinatario configurado
 ```
 
-No hay servidor de aplicación ni claves privadas dentro del código publicado. La configuración expuesta corresponde al uso de cliente de EmailJS y debe protegerse con restricciones de dominio y límites desde el panel del servicio.
-
----
-
-## 🚀 Cómo publicar en GitHub Pages
-
-### 1. Crear el repositorio
-
-Para publicar en la raíz del dominio de GitHub Pages, el repositorio debe llamarse:
-
-```text
-<usuario>.github.io
-```
-
-### 2. Subir el contenido del proyecto
-
-`index.html` debe quedar en la raíz del repositorio:
-
-```text
-<usuario>.github.io/
-├── index.html
-├── styles.min.css
-├── script.min.js
-└── assets/
-```
-
-No subas el archivo ZIP como único archivo; primero extráelo y luego sube su contenido.
-
-### 3. Activar Pages
-
-En GitHub:
-
-```text
-Settings → Pages → Build and deployment
-Source: Deploy from a branch
-Branch: main
-Folder: /(root)
-```
-
-`.nojekyll` ya está incluido para publicar los recursos sin procesamiento adicional de Jekyll.
-
----
-
-## ▶️ Trabajo local y compilación
-
-### Vista previa local
-
-Para abrir el proyecto con un servidor estático:
-
-```bash
-python -m http.server 8080
-```
-
-Después visita:
-
-```text
-http://localhost:8080
-```
-
-### Generar archivos minificados
-
-Solo necesitas Node.js y npm si modificas `styles.css` o `script.js` y deseas regenerar los archivos de producción.
-
-```bash
-npm install
-npm run check
-npm run build
-```
-
-| Comando | Acción |
-|---|---|
-| `npm run check` | Formatea/verifica HTML, CSS y JavaScript, además de validar sintaxis JavaScript. |
-| `npm run build:css` | Minifica `styles.css` en `styles.min.css`. |
-| `npm run build:js` | Minifica `script.js` en `script.min.js`. |
-| `npm run build` | Ejecuta validación y ambas minificaciones. |
-
 ---
 
 ## 📦 Descripción técnica por archivo
@@ -485,19 +377,6 @@ npm run build
 | `assets/skills/` | Iconos de categorías técnicas. |
 | `assets/tech/` | Iconos de tecnologías y herramientas. |
 | `.nojekyll` | Evita el procesamiento de Jekyll en GitHub Pages. |
-
----
-
-## 🧪 Verificación recomendada
-
-Antes de publicar cambios:
-
-1. Abre el sitio desde un servidor local.
-2. Prueba navegación por mouse, teclado y pantalla táctil.
-3. Verifica envío de contacto y restricciones de dominio en EmailJS.
-4. Revisa la vista móvil con los controles del juego separados por lados.
-5. Ejecuta `npm run check` y `npm run build` después de editar los archivos fuente.
-6. Confirma que `index.html` cargue `styles.min.css` y `script.min.js` antes de publicar.
 
 ---
 
@@ -522,4 +401,4 @@ Portafolio orientado a desarrollo de software, interfaces, inteligencia artifici
 
 ## 📄 Uso
 
-Proyecto de portafolio personal. Antes de reutilizar código, recursos visuales, documentos o contenido profesional, revisa los derechos y permisos correspondientes.
+Proyecto de portafolio personal. Libre de reutilizar código, recursos visuales, sin utilizar documentos o contenido profesional.
