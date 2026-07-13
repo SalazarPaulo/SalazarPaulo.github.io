@@ -2,8 +2,6 @@
 
 ## Applied improvements
 
-- Replaced versioned class names with semantic names such as `skill-inventory`, `about-grid`, `about-card`, `project-grid--featured`, `coin-fx__trail`, and `coin-fx__token`.
-- Removed version-history labels from HTML, CSS, and JavaScript source.
 - Converted the blueprint, portrait, Gmail icon, and LinkedIn icon to WebP.
 - Added `loading="lazy"` and `decoding="async"` to non-critical images.
 - Kept large illustrations in hidden sections lazy-loaded instead of preloading them during the opening screen.
@@ -27,3 +25,5 @@
 ## Why the project does not use infinite scrolling
 
 The portfolio has a small, fixed set of sections. Native scrolling and lazy media are faster, more accessible, and simpler than infinite scrolling, which would add JavaScript work without a useful loading benefit.
+
+---

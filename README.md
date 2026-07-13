@@ -89,10 +89,10 @@ El contenido principal incluye:
 | Gráficos | Canvas 2D | Fondo de estrellas animado en la pantalla arcade. |
 | Sonido | Web Audio API | Efectos, tonos de interacción y música ambiental. |
 | Contacto | EmailJS | Envío de mensajes desde el formulario sin backend propio. |
-| Tipografías | Google Fonts | `Press Start 2P` y `Space Mono` con carga optimizada. |
+| Tipografías | Fuentes locales | `Press Start 2P` y `Space Mono` servidas desde `assets/fonts`. |
 | Imágenes | WebP + SVG | Recursos visuales de bajo peso y escalabilidad vectorial. |
 | Publicación | GitHub Pages | Hosting estático desde el repositorio. |
-| Construcción opcional | esbuild + Lightning CSS + Prettier | Minificación y validación al editar fuentes. |
+| Construcción opcional | pnpm + esbuild + Lightning CSS + Prettier | Minificación y validación al editar fuentes. |
 
 ---
 
@@ -103,9 +103,12 @@ El contenido principal incluye:
 ├── index.html
 ├── styles.css
 ├── styles.min.css
+├── project-modal.css
 ├── script.js
 ├── script.min.js
+├── project-modal.js
 ├── package.json
+├── pnpm-lock.yaml
 ├── README.md
 ├── .nojekyll
 ├── .gitattributes
@@ -113,21 +116,15 @@ El contenido principal incluye:
 │
 └── assets/
     ├── documents/
-    │   ├── Pedro_Salazar_Resume_EN.pdf
-    │   └── Pedro_Salazar_Resume_ES.pdf
     ├── icons/
-    │   ├── logo.svg
-    │   ├── github.svg
-    │   ├── gmail.svg
-    │   ├── linkedin.svg
-    │   └── favicon.*
     ├── images/
-    │   ├── mansion-blueprint-480.webp
-    │   ├── mansion-blueprint-800.webp
-    │   ├── mansion-blueprint.webp
-    │   ├── pedro-salazar-320.webp
-    │   ├── pedro-salazar-640.webp
-    │   └── pedro-salazar.webp
+    ├── projects/
+    │   ├── project-media-manifest.json
+    │   ├── cristina-granda/
+    │   ├── bank-project/
+    │   ├── n-queens-visualizer/
+    │   ├── space-ship/
+    │   └── ids-ml-thesis/
     ├── skills/
     └── tech/
 ```
@@ -328,7 +325,6 @@ El proyecto usa carga diferida para imágenes y carga condicional para servicios
 | Caché en tiempo inactivo | SVG de Habilidades y Contacto tras estabilizar la portada. |
 | Precarga por intención | Recursos activados por hover, foco o toque de la navegación. |
 | Carga bajo demanda | Cliente EmailJS cuando se abre el diálogo de contacto. |
-
 
 ---
 

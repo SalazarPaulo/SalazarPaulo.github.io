@@ -40,6 +40,7 @@ const PAGE_LABELS = {
     "neon-fighters": "NEON FIGHTERS / RONDA 01",
   },
 };
+
 /* ---------- LOCALIZED COPY: ENGLISH & SPANISH ---------- */
 const LOCALIZED_COPY = {
   en: {
@@ -65,7 +66,7 @@ const LOCALIZED_COPY = {
       "I build digital products with Java, Python, JavaScript, React, JavaFX, SQL and Tailwind CSS. My work connects interfaces, application flows, databases and applied AI.",
     profileLineOne: "> experience: independent developer · 2022—present",
     profileLineTwo: "> background: Systems & Computer Engineering",
-    profileLineThree: "> status: academic requirements completed",
+    profileLineThree: "> focus: web · desktop · games · AI/security",
     projectsEyebrow: "LEVEL SELECT · PROJECTS",
     projectsTitle: "FEATURED PROJECTS",
     skillsEyebrow: "POWER-UP INVENTORY",
@@ -164,7 +165,7 @@ const LOCALIZED_COPY = {
     profileLineOne:
       "> experiencia: desarrollador independiente · 2022—actualidad",
     profileLineTwo: "> formación: Ingeniería de Sistemas y Computación",
-    profileLineThree: "> estado: requisitos académicos completados",
+    profileLineThree: "> enfoque: web · escritorio · juegos · IA/seguridad",
     projectsEyebrow: "SELECCIÓN DE NIVEL · PROYECTOS",
     projectsTitle: "PROYECTOS DESTACADOS",
     skillsEyebrow: "SELECCIÓN DE NIVEL · INVENTARIO DE POWER-UPS",
@@ -212,7 +213,7 @@ const LOCALIZED_COPY = {
     settingsReturn: "VOLVER",
     buttonProfile: "PERFIL",
     buttonProjects: "PROYECTOS",
-    buttonSkills: "HABILIDADES",
+    buttonSkills: "HABILIDAD",
     buttonContact: "CONTACTO",
     buttonStart: "INICIO",
     buttonHome: "INICIO",
@@ -239,6 +240,7 @@ const LOCALIZED_COPY = {
     ambientMuted: "MÚSICA AMBIENTAL SILENCIADA",
   },
 };
+
 /* ==========================================================================
    02 · PERSISTENT SETTINGS
    ========================================================================== */
@@ -258,7 +260,6 @@ const STORAGE_KEY = "dev-arcade.settings";
 /* ==========================================================================
    03 · ADDITIONAL LOCALIZED COPY
    ========================================================================== */
-
 Object.assign(LOCALIZED_COPY.en, {
   aboutEyebrow: "BONUS LEVEL · ABOUT ME",
   aboutTitle: "ABOUT ME",
@@ -541,8 +542,8 @@ function showNavigationMessages(label) {
   const message = `${getCurrentLanguage() === "es" ? "CARGANDO" : "LOADING"}: ${label}`;
   showCRTTerminal(message);
 }
-/* ------------------------------------------------------------------------------- */
 
+/* ------------------------------------------------------------------------------- */
 /* ==========================================================================
    07 · UI STATE, SETTINGS & LOCALIZATION RENDERING
    ========================================================================== */
@@ -642,8 +643,8 @@ function applyLanguage() {
     : "DOWNLOAD ENGLISH CV";
   if (cvModalContent)
     cvModalContent.innerHTML = spanish
-      ? `<p><strong>Desarrollador de software</strong> con formación en Ingeniería de Sistemas y Computación, enfocado en aplicaciones web, herramientas de escritorio, sistemas conectados a bases de datos e IA aplicada.</p><p><strong>Stack principal:</strong> Java, Python, JavaScript, React, JavaFX, SQL, Tailwind CSS, HTML y CSS.</p><p><strong>Experiencia:</strong> Desarrollador Independiente, 2022–actualidad. Requisitos académicos completados; título pendiente de emisión oficial.</p><p><strong>Proyectos:</strong> Portfolio Cristina Granda, Bank Project, Sistema de Matrícula VB.NET, Battle Ship, Pokémon Battle AI y N-Queens Visualizer.</p>`
-      : `<p><strong>Software developer</strong> with a Systems and Computer Engineering background, focused on web applications, desktop tools, database-connected systems and applied AI.</p><p><strong>Core stack:</strong> Java, Python, JavaScript, React, JavaFX, SQL, Tailwind CSS, HTML and CSS.</p><p><strong>Experience:</strong> Independent Software Developer, 2022–present. Academic requirements completed; degree pending official issuance.</p><p><strong>Selected work:</strong> Portfolio Cristina Granda, Bank Project, VB.NET Enrollment System, Battle Ship Game, Pokémon Battle AI and N-Queens Search Visualizer.</p>`;
+      ? `<p><strong>Desarrollador de software</strong> con formación en Ingeniería de Sistemas y Computación, enfocado en aplicaciones web, herramientas de escritorio, videojuegos 2D, sistemas conectados a bases de datos e IA aplicada.</p><p><strong>Stack principal:</strong> Java, Python, JavaScript, React, JavaFX, SQL, Tailwind CSS, HTML, CSS y herramientas de ciberseguridad/ML.</p><p><strong>Experiencia:</strong> Desarrollador Independiente, 2022–actualidad.</p><p><strong>Proyectos destacados:</strong> Portfolio Cristina Granda, Bank Project, Visualizador de N-Reinas, Space Ship y Tesis IDS-ML.</p>`
+      : `<p><strong>Software developer</strong> with a Systems and Computer Engineering background, focused on web applications, desktop tools, 2D games, database-connected systems and applied AI.</p><p><strong>Core stack:</strong> Java, Python, JavaScript, React, JavaFX, SQL, Tailwind CSS, HTML, CSS and cybersecurity/ML tooling.</p><p><strong>Experience:</strong> Independent Software Developer, 2022–present.</p><p><strong>Featured projects:</strong> Portfolio Cristina Granda, Bank Project, N-Queens Visualizer, Space Ship and IDS-ML Thesis.</p>`;
 }
 
 /* ==========================================================================
@@ -852,6 +853,7 @@ function startAmbient() {
   };
   tick();
 }
+
 /* ==========================================================================
    10 · CABINET INTERACTIONS: THEME, SOUND, COIN & JOYSTICK
    ========================================================================== */
@@ -892,6 +894,7 @@ function insertCoin() {
     showConsoleBlue(translate("coinsAccepted"));
   }, 760);
 }
+
 /**
  * Coalesces pointer updates into one visual joystick update per frame.
  */
@@ -932,35 +935,35 @@ function updateJoystick(x, y) {
 }
 
 /* ==========================================================================
-   11 · BONUS LEVEL BENTO ABOUT CONTENT & MODAL UTILITIES
+   11 · ABOUT CONTENT & MODAL UTILITIES
    ========================================================================== */
 const ABOUT_DETAILS = {
   en: {
     experience: {
       kicker: "EXPERIENCE",
       title: "Independent Software Developer",
-      body: "<p>I develop web and desktop applications, database-connected systems and functional prototypes using Java, Python, JavaScript, React, JavaFX, SQL and Tailwind CSS.</p><ul><li>Responsive interfaces and structured application flows.</li><li>Object-oriented, MVC and event-driven development.</li><li>API integration, business forms and academic/freelance projects.</li></ul>",
+      body: "<p>I build web portfolios, desktop applications, database-connected tools, game prototypes and applied AI/cybersecurity systems.</p><ul><li><strong>Web:</strong> responsive interfaces, reusable sections, interactive modals and deployable front-end experiences.</li><li><strong>Desktop:</strong> Java, JavaFX/FXML, Swing/AWT, MVC-style screens and local persistence.</li><li><strong>Delivery:</strong> Git/GitHub repositories, documentation, screenshots, demo assets and portfolio-ready presentation.</li></ul>",
     },
     research: {
       kicker: "RESEARCH",
-      title: "Computer Vision · Applied AI",
-      body: "<p>Co-author of a scientific publication on food detection and classification in refrigerators using artificial vision models.</p><p>This work connects data preparation, model evaluation, applied AI.</p>",
+      title: "Applied AI · Cybersecurity · Computer Vision",
+      body: "<p>Research track focused on practical AI systems, model evaluation and security-oriented prototypes.</p><ul><li><strong>IDS-ML Thesis:</strong> flow preprocessing, machine-learning classification, probability calibration and IDS correlation with Snort, Suricata and Zeek.</li><li><strong>Computer Vision:</strong> co-author work on food detection and classification in refrigerators using artificial vision models.</li><li><strong>Focus:</strong> datasets, metrics, explainability, prototype interfaces and reproducible experimentation.</li></ul>",
     },
     education: {
       kicker: "EDUCATION",
       title: "UTP · Systems & Computer Engineering",
-      body: "<p>Bachelor's Degree in Systems and Computer Engineering from the Technological University of Panama.</p><p><strong>Status:</strong> academic requirements completed; university degree pending official issuance.</p>",
+      body: "<ul><li><strong>University:</strong> Bachelor's Degree in Systems and Computer Engineering from the Technological University of Panama.</li><li><strong>School:</strong> Science high school background at Colegio Nuestra Señora del Carmen.</li></ul>",
     },
     certifications: {
       kicker: "CERTIFICATIONS",
-      title: "AWS · MySQL · Jira · PM",
+      title: "Cloud · Databases · Agile · Security",
       body: `
-        <p>Selected credentials across cloud, databases, agile practices and project management.</p>
+        
         <ul>
-          <li>AWS Academy Cloud Foundations · 2024</li>
-          <li>MySQL Database Principles · 2022</li>
-          <li>Agile Practices with Jira · 2022</li>
-          <li>Dell Volunteers Project Management Program · 2022</li>
+          <li><strong>Cloud & DevOps:</strong> AWS Academy Cloud Foundations, Docker, Kubernetes and serverless front-end development.</li>
+          <li><strong>Data:</strong> MySQL Database Principles and database-centered application practice.</li>
+          <li><strong>Engineering:</strong> Agile Practices with Jira, automated testing, GitLab and project management.</li>
+          <li><strong>Security:</strong> authentication, authorization and cryptography concepts.</li>
         </ul>
         <button class="project-action" type="button" id="view-all-certifications">
           VIEW ALL CERTIFICATIONS
@@ -969,36 +972,36 @@ const ABOUT_DETAILS = {
     },
     projects: {
       kicker: "PROJECT VAULT",
-      title: "Web · Desktop · AI · Games",
-      body: "<p>A project collection covering professional portfolios, desktop systems, banking interfaces, enrollment management, logic games and AI experiments.</p><p>Selected work includes Portfolio Cristina Granda, Bank Project, VB.NET Enrollment System, Battle Ship, Pokémon Battle AI and N-Queens Search Visualizer.</p>",
+      title: "Projects shown in Level Select",
+      body: "<ul><li><strong>Portfolio Cristina Granda:</strong> professional voice artist portfolio with React, Three.js, Tailwind CSS, Framer Motion and EmailJS.</li><li><strong>Bank Project:</strong> desktop banking prototype with Java, JavaFX, FXML, CSS, SQLite, JDBC and Maven.</li><li><strong>N-Queens Visualizer:</strong> Python/Tkinter search visualizer for BFS, DFS, A*, Best-First and Hill Climbing.</li><li><strong>Space Ship:</strong> Java 2D arcade survival game with waves, power-ups, configurable controls and local scores.</li><li><strong>IDS-ML Thesis:</strong> cybersecurity research system with Python, ML models, calibrated probabilities and IDS correlation.</li></ul>",
     },
   },
   es: {
     experience: {
       kicker: "EXPERIENCIA",
       title: "Desarrollador de software independiente",
-      body: "<p>Desarrollo aplicaciones web y de escritorio, sistemas conectados a bases de datos y prototipos funcionales usando Java, Python, JavaScript, React, JavaFX, SQL y Tailwind CSS.</p><ul><li>Interfaces responsivas y flujos de aplicación estructurados.</li><li>Desarrollo orientado a objetos, MVC y programación orientada a eventos.</li><li>Integración de APIs, formularios de negocio y proyectos académicos/freelance.</li></ul>",
+      body: "<p>Construyo portafolios web, aplicaciones de escritorio, herramientas conectadas a bases de datos, prototipos de juego y sistemas de IA/ciberseguridad aplicada.</p><ul><li><strong>Web:</strong> interfaces responsivas, secciones reutilizables, modales interactivos y experiencias front-end listas para despliegue.</li><li><strong>Escritorio:</strong> Java, JavaFX/FXML, Swing/AWT, pantallas con estilo MVC y persistencia local.</li><li><strong>Entrega:</strong> repositorios Git/GitHub, documentación, capturas, demos y presentación lista para portafolio.</li></ul>",
     },
     research: {
       kicker: "INVESTIGACIÓN",
-      title: "Visión por computadora · IA aplicada",
-      body: "<p>Coautor de una publicación científica sobre detección y clasificación de alimentos en refrigeradores mediante modelos de visión artificial.</p><p>Este trabajo conecta preparación de datos, evaluación de modelos, IA aplicada.</p>",
+      title: "IA aplicada · Ciberseguridad · Visión por computadora",
+      body: "<p>Línea de investigación enfocada en sistemas prácticos de IA, evaluación de modelos y prototipos orientados a seguridad.</p><ul><li><strong>Tesis IDS-ML:</strong> preprocesamiento de flujos, clasificación con machine learning, calibración de probabilidades y correlación IDS con Snort, Suricata y Zeek.</li><li><strong>Visión por computadora:</strong> coautoría en detección y clasificación de alimentos en refrigeradores mediante modelos de visión artificial.</li><li><strong>Enfoque:</strong> datasets, métricas, explicabilidad, interfaces prototipo y experimentación reproducible.</li></ul>",
     },
     education: {
       kicker: "EDUCACIÓN",
       title: "UTP · Ingeniería de Sistemas y Computación",
-      body: "<p>Licenciatura en Ingeniería de Sistemas y Computación en la Universidad Tecnológica de Panamá.</p><p><strong>Estado:</strong> requisitos académicos completados; título universitario pendiente de emisión oficial.</p>",
+      body: "<ul><li><strong>Universidad:</strong> Licenciatura en Ingeniería de Sistemas y Computación en la Universidad Tecnológica de Panamá.</li><li><strong>Colegio:</strong> Bachiller en Ciencias del Colegio Nuestra Señora del Carmen.</li></ul>",
     },
     certifications: {
       kicker: "CERTIFICACIONES",
-      title: "AWS · MySQL · Jira · Gestión",
+      title: "Nube · Bases de datos · Agile · Seguridad",
       body: `
-        <p>Credenciales seleccionadas en nube, bases de datos, prácticas ágiles y gestión de proyectos.</p>
+        
         <ul>
-          <li>AWS Academy Cloud Foundations · 2024</li>
-          <li>Principios de Base de Datos MySQL · 2022</li>
-          <li>Prácticas ágiles con Jira · 2022</li>
-          <li>Dell Volunteers Project Management Program · 2022</li>
+          <li><strong>Nube y DevOps:</strong> AWS Academy Cloud Foundations, Docker, Kubernetes y desarrollo front-end serverless.</li>
+          <li><strong>Datos:</strong> Principios de Base de Datos MySQL y práctica con aplicaciones centradas en datos.</li>
+          <li><strong>Ingeniería:</strong> Prácticas ágiles con Jira, pruebas automatizadas, GitLab y gestión de proyectos.</li>
+          <li><strong>Seguridad:</strong> autenticación, autorización y conceptos de criptografía.</li>
         </ul>
         <button class="project-action" type="button" id="view-all-certifications">
           VER TODAS LAS CERTIFICACIONES
@@ -1007,8 +1010,8 @@ const ABOUT_DETAILS = {
     },
     projects: {
       kicker: "BÓVEDA DE PROYECTOS",
-      title: "Web · Escritorio · IA · Juegos",
-      body: "<p>Colección de proyectos que cubren portafolios profesionales, sistemas de escritorio, interfaces bancarias, gestión de matrícula, juegos lógicos y experimentos de IA.</p><p>Trabajo seleccionado: Portfolio Cristina Granda, Bank Project, Sistema de Matrícula VB.NET, Battle Ship, Pokémon Battle AI y N-Queens Search Visualizer.</p>",
+      title: "Proyectos mostrados en Level Select",
+      body: "<ul><li><strong>Portfolio Cristina Granda:</strong> portafolio profesional de locución con React, Three.js, Tailwind CSS, Framer Motion y EmailJS.</li><li><strong>Bank Project:</strong> prototipo bancario de escritorio con Java, JavaFX, FXML, CSS, SQLite, JDBC y Maven.</li><li><strong>Visualizador de N-Reinas:</strong> visualizador Python/Tkinter para BFS, DFS, A*, Primero el Mejor y Ascenso a la Colina.</li><li><strong>Space Ship:</strong> juego arcade 2D en Java con oleadas, power-ups, controles configurables y puntajes locales.</li><li><strong>Tesis IDS-ML:</strong> sistema de investigación en ciberseguridad con Python, modelos ML, probabilidades calibradas y correlación IDS.</li></ul>",
     },
   },
 };
@@ -1050,53 +1053,89 @@ document.addEventListener("click", (event) => {
   const button = event.target.closest("#view-all-certifications");
   if (!button) return;
 
-  aboutModalKicker.textContent =
-    getCurrentLanguage() === "es" ? "CERTIFICACIONES" : "CERTIFICATIONS";
+  const spanish = getCurrentLanguage() === "es";
 
-  aboutModalTitle.textContent =
-    getCurrentLanguage() === "es"
-      ? "FORMACIÓN COMPLETA"
-      : "FULL TRAINING RECORD";
+  aboutModalKicker.textContent = spanish ? "CERTIFICACIONES" : "CERTIFICATIONS";
+  aboutModalTitle.textContent = spanish ? "FORMACIÓN COMPLETA" : "FULL TRAINING RECORD";
+  aboutModalBody.innerHTML = spanish
+    ? `
+      <h3>Nube e infraestructura</h3>
+      <ul>
+        <li>AWS Academy Cloud Foundations · 2024</li>
+        <li>Introduction to Docker · 2022</li>
+        <li>Introduction to Kubernetes · 2022</li>
+        <li>Serverless FrontEnd Development · 2022</li>
+      </ul>
 
-  aboutModalBody.innerHTML = `
-    <h3>Cloud & Infrastructure</h3>
-    <ul>
-      <li>AWS Academy Cloud Foundations · 2024</li>
-      <li>Introduction to Docker · 2022</li>
-      <li>Introduction to Kubernetes · 2022</li>
-      <li>Serverless FrontEnd Development · 2022</li>
-    </ul>
+      <h3>Ingeniería de software</h3>
+      <ul>
+        <li>Automated Testing · 2022</li>
+        <li>Introduction to Kafka · 2022</li>
+        <li>Version Control with GitLab · 2022</li>
+        <li>Agile Practices with Jira · 2022</li>
+        <li>Groovy for Batch Processing · 2022</li>
+      </ul>
 
-    <h3>Software Engineering</h3>
-    <ul>
-      <li>Automated Testing · 2022</li>
-      <li>Introduction to Kafka · 2022</li>
-      <li>Version Control with GitLab · 2022</li>
-      <li>Agile Practices with Jira · 2022</li>
-      <li>Groovy for Batch Processing · 2022</li>
-    </ul>
+      <h3>Datos y ciberseguridad</h3>
+      <ul>
+        <li>Principios de Base de Datos MySQL · 2022</li>
+        <li>Authentication and Authorization in Cybersecurity · 2026</li>
+        <li>Cryptography Concepts · 2024</li>
+      </ul>
 
-    <h3>Data & Cybersecurity</h3>
-    <ul>
-      <li>MySQL Database Principles · 2022</li>
-      <li>Authentication and Authorization in Cybersecurity · 2026</li>
-      <li>Cryptography Concepts · 2024</li>
-    </ul>
+      <h3>Programación y gestión</h3>
+      <ul>
+        <li>Java Course · 2023</li>
+        <li>Python for Beginners · 2024</li>
+        <li>Javascript Course · 2017</li>
+        <li>Dell Volunteers Project Management Program · 2022</li>
+      </ul>
 
-    <h3>Programming & Management</h3>
-    <ul>
-      <li>Java Course · 2023</li>
-      <li>Python for Beginners · 2024</li>
-      <li>Javascript Course · 2017</li>
-      <li>Dell Volunteers Project Management Program · 2022</li>
-    </ul>
+      <h3>Formación adicional</h3>
+      <ul>
+        <li>Diploma Program in U.S. Stock Market Investment Management · 2022</li>
+      </ul>
+    `
+    : `
+      <h3>Cloud & Infrastructure</h3>
+      <ul>
+        <li>AWS Academy Cloud Foundations · 2024</li>
+        <li>Introduction to Docker · 2022</li>
+        <li>Introduction to Kubernetes · 2022</li>
+        <li>Serverless FrontEnd Development · 2022</li>
+      </ul>
 
-    <h3>Additional Training</h3>
-    <ul>
-      <li>Diploma Program in U.S. Stock Market Investment Management · 2022</li>
-    </ul>
-  `;
+      <h3>Software Engineering</h3>
+      <ul>
+        <li>Automated Testing · 2022</li>
+        <li>Introduction to Kafka · 2022</li>
+        <li>Version Control with GitLab · 2022</li>
+        <li>Agile Practices with Jira · 2022</li>
+        <li>Groovy for Batch Processing · 2022</li>
+      </ul>
+
+      <h3>Data & Cybersecurity</h3>
+      <ul>
+        <li>MySQL Database Principles · 2022</li>
+        <li>Authentication and Authorization in Cybersecurity · 2026</li>
+        <li>Cryptography Concepts · 2024</li>
+      </ul>
+
+      <h3>Programming & Management</h3>
+      <ul>
+        <li>Java Course · 2023</li>
+        <li>Python for Beginners · 2024</li>
+        <li>Javascript Course · 2017</li>
+        <li>Dell Volunteers Project Management Program · 2022</li>
+      </ul>
+
+      <h3>Additional Training</h3>
+      <ul>
+        <li>Diploma Program in U.S. Stock Market Investment Management · 2022</li>
+      </ul>
+    `;
 });
+
 /* ==========================================================================
    12 · PROJECT DETAIL CONTENT
    ========================================================================== */
@@ -1597,6 +1636,7 @@ coinButton.addEventListener("click", () => {
   pressButton(coinButton);
   insertCoin();
 });
+
 /* Game selector accordion: no impact outside [data-page="games"]. */
 gameAccordionControls.forEach((control) => {
   control.addEventListener("click", () => {
@@ -1740,6 +1780,7 @@ function animateJoystickClick() {
   joystickClickPending = true;
   joystickZone.classList.remove("is-clicked");
 
+  
   /* Wait one paint before reapplying the class instead of forcing layout. */
   joystickClickFrame = requestAnimationFrame(() => {
     joystickClickFrame = requestAnimationFrame(() => {
@@ -1865,11 +1906,9 @@ initCanvas();
 /* --------------------------------------------------------------------------
    CONTACT FORM · EMAILJS
    -------------------------------------------------------------------------- */
-
 /* ==========================================================================
    16 · ON-DEMAND EMAIL DELIVERY
    ========================================================================== */
-
 const EMAIL_SERVICE_CONFIG = {
   serviceId: "service_fdj38eb",
   templateId: "template_62wu7ii",
@@ -1954,3 +1993,361 @@ if (contactForm && contactSendButton) {
     }
   });
 }
+
+/* Project-media carousel additions */
+const PROJECT_MEDIA_LOREM =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+const PROJECT_MEDIA_SPEED = 14;
+const PROJECT_MEDIA_CENTER_DURATION = 420;
+const PROJECT_MEDIA_FOCUS_DURATION = 3000;
+const PROJECT_MEDIA_TILT = -8;
+const PROJECT_MEDIA_HOLD_REPEAT = 260;
+
+const PROJECT_MEDIA = {
+  cristina: {
+    images: [
+      ["assets/projects/cristina-granda/images/home.webp", "Profile"],
+      ["assets/projects/cristina-granda/images/demos.webp", "Microphone"],
+      ["assets/projects/cristina-granda/images/intonations.webp", "Institutional voice"],
+      ["assets/projects/cristina-granda/images/demos.webp", "Friendly voice"],
+      ["assets/projects/cristina-granda/images/delivery.webp", "Sensual voice"],
+      ["assets/projects/cristina-granda/images/contact.webp", "Promotional voice"],
+      ["assets/projects/cristina-granda/images/about.webp", "Cheerful voice"],
+    ],
+    demo: null,
+  },
+  bank: {
+    images: [
+      ["assets/projects/bank-project/images/login.webp", "Login"],
+      ["assets/projects/bank-project/images/dashboard.webp", "Client dashboard"],
+      ["assets/projects/bank-project/images/accounts.webp", "Accounts"],
+      ["assets/projects/bank-project/images/create-client.webp", "Create client"],
+    ],
+    demo: null,
+  },
+  queens: {
+    images: [
+      ["assets/projects/n-queens-visualizer/images/cover.webp", "Main view"],
+      ["assets/projects/n-queens-visualizer/images/manual-placement.webp", "Manual placement"],
+      ["assets/projects/n-queens-visualizer/images/valid-moves.webp", "Valid moves"],
+      ["assets/projects/n-queens-visualizer/images/solution-complete.webp", "Solution"],
+    ],
+    demo: null,
+  },
+  spaceShip: {
+    images: [
+      ["assets/projects/space-ship/images/menu-episode-phantom.webp", "Episode Phantom menu"],
+      ["assets/projects/space-ship/images/gameplay-red-laser.webp", "Red laser gameplay"],
+      ["assets/projects/space-ship/images/gameplay-powerups.webp", "Power-ups"],
+      ["assets/projects/space-ship/images/gameplay-wave-two.webp", "Second wave"],
+    ],
+    demo: {
+      src: "assets/projects/space-ship/videos/space-ship-demo.mp4",
+      poster: "assets/projects/space-ship/images/gameplay-red-laser.webp",
+      title: "Space Ship gameplay demo",
+    },
+  },
+  idsml: {
+    images: [
+      ["assets/projects/ids-ml-thesis/images/moe-interface.webp", "Mixture of Experts interface"],
+      ["assets/projects/ids-ml-thesis/images/unsw-roc-auc.webp", "UNSW-NB15 ROC-AUC"],
+    ],
+    demo: null,
+  },
+};
+
+Object.assign(PROJECT_DETAILS.en, {
+  spaceShip: {
+    kicker: "FEATURED PROJECT · ARCADE GAME",
+    title: "Space Ship",
+    body: "<p>A Java 2D space-survival arcade game built around waves of meteors and UFOs, collectible power-ups, configurable controls and local high-score persistence.</p><p><strong>Stack:</strong> Java 21, Java2D, Canvas and BufferStrategy.</p>",
+    github: "https://github.com/SalazarPaulo/space_ship",
+  },
+  idsml: {
+    kicker: "FEATURED PROJECT · CYBERSECURITY RESEARCH",
+    title: "IDS-ML Thesis",
+    body: "<p>An experimental intrusion-detection system that combines network-data preprocessing, ML classification, calibrated probabilities and alert correlation across Snort, Suricata, Zeek and ML predictions.</p><p><strong>Stack:</strong> Python, Machine Learning, Snort, Suricata and Zeek.</p>",
+    github: "https://github.com/SalazarPaulo/hybrid-ids-ml-flow-based-thesis",
+  },
+});
+
+Object.assign(PROJECT_DETAILS.es, {
+  spaceShip: {
+    kicker: "PROYECTO DESTACADO · JUEGO ARCADE",
+    title: "Space Ship",
+    body: "<p>Juego arcade 2D de supervivencia espacial en Java, construido alrededor de oleadas de meteoritos y UFOs, mejoras acumulables, controles configurables y puntuaciones locales.</p><p><strong>Stack:</strong> Java 21, Java2D, Canvas y BufferStrategy.</p>",
+    github: "https://github.com/SalazarPaulo/space_ship",
+  },
+  idsml: {
+    kicker: "PROYECTO DESTACADO · INVESTIGACIÓN EN CIBERSEGURIDAD",
+    title: "Tesis IDS-ML",
+    body: "<p>Sistema experimental de detección de intrusiones que combina preprocesamiento de datos de red, clasificación con ML, calibración de probabilidades y correlación de alertas entre Snort, Suricata, Zeek y predicciones ML.</p><p><strong>Stack:</strong> Python, Machine Learning, Snort, Suricata y Zeek.</p>",
+    github: "https://github.com/SalazarPaulo/hybrid-ids-ml-flow-based-thesis",
+  },
+});
+
+const projectMediaPreloads = new Map();
+let disposeProjectMediaCarousel = () => {};
+
+function preloadProjectMedia(projectId, priority = "low") {
+  const media = PROJECT_MEDIA[projectId];
+  if (!media) return;
+
+  const requestedPriority = priority === "high" ? "high" : "low";
+  const sources = priority === "high"
+    ? media.images.map(([source]) => source)
+    : media.images.slice(0, 1).map(([source]) => source);
+
+  if (media.demo?.poster && priority === "high") sources.push(media.demo.poster);
+
+  sources.forEach((source) => {
+    let preloader = projectMediaPreloads.get(source);
+    if (!preloader) {
+      preloader = new Image();
+      preloader.decoding = "async";
+      projectMediaPreloads.set(source, preloader);
+      preloader.src = source;
+    }
+    preloader.fetchPriority = requestedPriority;
+    preloader.setAttribute("fetchpriority", requestedPriority);
+  });
+}
+
+let projectsPageImagesWarmed = false;
+function warmProjectsPageImages() {
+  const projectsPage = pageById.get("projects");
+  if (!projectsPage || projectsPageImagesWarmed) return;
+  projectsPageImagesWarmed = true;
+
+  const runWarmup = () => {
+    const sources = new Set();
+
+    queryAll("img[src]", projectsPage).forEach((image) => {
+      const source = image.getAttribute("src");
+      if (source) sources.add(source);
+    });
+
+    Object.keys(PROJECT_MEDIA).forEach((id) => {
+      const cover = PROJECT_MEDIA[id].images?.[0]?.[0];
+      if (cover) sources.add(cover);
+    });
+
+    sources.forEach((source) => {
+      if (projectMediaPreloads.has(source)) return;
+      const preloader = new Image();
+      preloader.decoding = "async";
+      preloader.fetchPriority = "low";
+      preloader.setAttribute("fetchpriority", "low");
+      preloader.src = source;
+      projectMediaPreloads.set(source, preloader);
+    });
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(runWarmup, { timeout: 1600 });
+  } else {
+    window.setTimeout(runWarmup, 350);
+  }
+}
+
+function createProjectMediaSurface({ source, label, number, side, title, eager }) {
+  const front = side === "front";
+  const alt = front ? `${label} — ${title}` : "";
+  const loading = eager ? "eager" : "lazy";
+  const priority = eager ? "high" : "low";
+
+  return `
+    <div class="project-media__surface project-media__surface--${side}" ${front ? "" : 'aria-hidden="true"'}>
+      <span class="project-media__beacon project-media__beacon--top" aria-hidden="true"></span>
+      <span class="project-media__beacon project-media__beacon--bottom" aria-hidden="true"></span>
+      <div class="project-media__visual">
+        <img src="${source}" alt="${alt}" decoding="async" loading="${loading}" fetchpriority="${priority}" />
+        <span class="project-media__scan" aria-hidden="true"></span>
+        <span class="project-media__reticle" aria-hidden="true"></span>
+        ${
+          front
+            ? `<figcaption class="project-media__caption"><span class="project-media__watch">WATCH</span><span class="project-media__label">${label}</span></figcaption><span class="project-media__index" aria-hidden="true">${number}</span>`
+            : `<span class="project-media__back-label" aria-hidden="true"><span>ARCHIVE</span><strong>${number}</strong></span>`
+        }
+      </div>
+    </div>
+  `;
+}
+
+function createProjectMediaDemo(demo, title) {
+  if (!demo) return "";
+  if (demo.embedUrl) {
+    return `<div class="project-media__demo"><iframe src="${demo.embedUrl}" title="${demo.title || `Demo de ${title}`}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+  }
+  return `<div class="project-media__demo"><video controls playsinline preload="metadata" poster="${demo.poster || ""}" aria-label="${demo.title || `Demo de ${title}`}"><source src="${demo.src}" type="video/mp4" /></video></div>`;
+}
+
+function createProjectMedia(project, media) {
+  const total = media.images.length;
+  const items = media.images
+    .map(([source, label], index) => {
+      const angle = (360 / total) * index;
+      const number = String(index + 1).padStart(2, "0");
+      return `<figure class="project-media__item" data-angle="${angle}" style="--angle:${angle}deg" tabindex="0" role="button" aria-label="${getCurrentLanguage() === "es" ? "Mostrar" : "Show"} ${label}">${createProjectMediaSurface({ source, label, number, side: "front", title: project.title, eager: index === 0 })}${createProjectMediaSurface({ source, label, number, side: "back", title: project.title, eager: false })}</figure>`;
+    })
+    .join("");
+  const withDemo = Boolean(media.demo);
+
+  return `<section class="project-media" aria-label="${getCurrentLanguage() === "es" ? "Galería del proyecto" : "Project gallery"}"><div class="project-media__stage" aria-label="${getCurrentLanguage() === "es" ? "Carrusel 3D: selecciona una imagen para verla al frente" : "3D carousel: select an image to bring it forward"}"><div class="project-media__track">${items}</div></div><div class="project-media__details${withDemo ? " project-media__details--with-demo" : ""}"><div class="project-media__text"><div class="project-media__summary">${project.body}</div><p class="project-media__copy">${PROJECT_MEDIA_LOREM}</p></div>${createProjectMediaDemo(media.demo, project.title)}</div></section>`;
+}
+
+function projectMediaNearestAngle(current, target) {
+  return target + 360 * Math.round((current - target) / 360);
+}
+
+function initializeProjectMediaCarousel(carousel) {
+  const track = carousel.querySelector(".project-media__track");
+  const items = [...carousel.querySelectorAll(".project-media__item")];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let frame = 0;
+  let last = 0;
+  let rotation = 0;
+  let repeat = 0;
+  let activePointer = null;
+  let motion = { mode: reducedMotion ? "stopped" : "spinning" };
+
+  const render = () => {
+    track.style.transform = `rotateX(${PROJECT_MEDIA_TILT}deg) rotateY(${rotation}deg)`;
+  };
+
+  const select = (item) => {
+    const angle = Number(item.dataset.angle);
+    const target = projectMediaNearestAngle(rotation, -angle);
+    items.forEach((entry) => entry.classList.toggle("is-selected", entry === item));
+
+    if (reducedMotion) {
+      rotation = target;
+      render();
+      window.setTimeout(() => item.classList.remove("is-selected"), PROJECT_MEDIA_FOCUS_DURATION);
+      return;
+    }
+
+    motion = { mode: "centering", from: rotation, target, started: performance.now() };
+  };
+
+  const stopHolding = () => {
+    if (repeat) window.clearInterval(repeat);
+    repeat = 0;
+    activePointer = null;
+  };
+
+  const startHolding = (event, item) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    stopHolding();
+    select(item);
+    activePointer = event.pointerId;
+    try {
+      item.setPointerCapture(event.pointerId);
+    } catch {
+      activePointer = null;
+    }
+    repeat = window.setInterval(() => select(item), PROJECT_MEDIA_HOLD_REPEAT);
+  };
+
+  const endHolding = (event) => {
+    if (activePointer !== null && event.pointerId !== activePointer) return;
+    const item = event.currentTarget;
+    if (item.hasPointerCapture?.(event.pointerId)) item.releasePointerCapture(event.pointerId);
+    stopHolding();
+  };
+
+  const tick = (now) => {
+    if (!last) last = now;
+    const delta = Math.min((now - last) / 1000, 0.05);
+    last = now;
+
+    if (motion.mode === "centering") {
+      const progress = Math.min((now - motion.started) / PROJECT_MEDIA_CENTER_DURATION, 1);
+      const eased = 1 - (1 - progress) ** 3;
+      rotation = motion.from + (motion.target - motion.from) * eased;
+      if (progress === 1) motion = { mode: "holding", resumeAt: now + PROJECT_MEDIA_FOCUS_DURATION };
+    } else if (motion.mode === "holding") {
+      if (now >= motion.resumeAt) {
+        items.forEach((item) => item.classList.remove("is-selected"));
+        motion = { mode: "spinning" };
+      }
+    } else if (motion.mode === "spinning") {
+      rotation += PROJECT_MEDIA_SPEED * delta;
+    }
+
+    render();
+    frame = window.requestAnimationFrame(tick);
+  };
+
+  items.forEach((item) => {
+    item.addEventListener("pointerdown", (event) => startHolding(event, item));
+    item.addEventListener("pointerup", endHolding);
+    item.addEventListener("pointercancel", endHolding);
+    item.addEventListener("lostpointercapture", stopHolding);
+    item.addEventListener("click", (event) => {
+      if (event.detail === 0) select(item);
+    });
+    item.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      select(item);
+    });
+  });
+
+  render();
+  if (!reducedMotion) frame = window.requestAnimationFrame(tick);
+
+  return () => {
+    stopHolding();
+    window.cancelAnimationFrame(frame);
+    items.forEach((item) => item.classList.remove("is-selected"));
+  };
+}
+
+function openProject(id) {
+  const project = (PROJECT_DETAILS[getCurrentLanguage()] || PROJECT_DETAILS.en)[id];
+  const media = PROJECT_MEDIA[id];
+  if (!project || !media) return;
+
+  preloadProjectMedia(id, "high");
+  disposeProjectMediaCarousel();
+  projectModalKicker.textContent = project.kicker;
+  projectModalTitle.textContent = project.title;
+  projectModalBody.innerHTML = createProjectMedia(project, media);
+  projectModalActions.innerHTML = `<a class="project-action" href="${project.github}" target="_blank" rel="noreferrer">GITHUB ↗</a>${project.live ? `<a class="project-action" href="${project.live}" target="_blank" rel="noreferrer">${getCurrentLanguage() === "es" ? "SITIO EN VIVO ↗" : "LIVE SITE ↗"}</a>` : ""}`;
+  openModal(projectModal);
+  disposeProjectMediaCarousel = initializeProjectMediaCarousel(query(".project-media", projectModalBody));
+  projectModalClose.focus();
+  playTone(720, 0.07, "triangle", 0.05);
+}
+
+queryAll('[data-target="projects"]').forEach((control) => {
+  ["pointerenter", "focusin", "pointerdown", "click"].forEach((eventName) => {
+    control.addEventListener(eventName, warmProjectsPageImages, { passive: true });
+  });
+});
+
+queryAll("[data-project]").forEach((card) => {
+  ["pointerenter", "focusin"].forEach((eventName) => {
+    card.addEventListener(eventName, () => preloadProjectMedia(card.dataset.project, "low"), { passive: true });
+  });
+});
+
+projectModalClose.addEventListener("click", () => {
+  disposeProjectMediaCarousel();
+  disposeProjectMediaCarousel = () => {};
+});
+
+projectModal.addEventListener("click", (event) => {
+  if (event.target !== projectModal) return;
+  disposeProjectMediaCarousel();
+  disposeProjectMediaCarousel = () => {};
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !projectModal.classList.contains("is-open")) return;
+  window.setTimeout(() => {
+    disposeProjectMediaCarousel();
+    disposeProjectMediaCarousel = () => {};
+  }, 0);
+});

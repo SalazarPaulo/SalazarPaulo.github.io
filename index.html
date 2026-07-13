@@ -2,16 +2,63 @@
 
 <html lang="en">
   <head>
+    
     <!-- ==================== DOCUMENT METADATA & ASSETS ==================== -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta
-      content="Portafolio arcade de Pedro Salazar: software, interfaces, IA y proyectos."
+      content="Explore Pedro Salazar’s software developer portfolio: web applications, desktop systems, Java and Python projects, React interfaces, cybersecurity experiments and applied AI."
       name="description"
     />
-    <title>DEV ARCADE · Pedro Salazar</title>
+    <title>Pedro Salazar | Software Developer Portfolio · Java, Python, React &amp; AI</title>
 
-    <!-- The previous favicon path pointed to a file that did not exist at the site root. -->
+    <meta content="Pedro Salazar" name="author" />
+    <link href="https://salazarpaulo.github.io/" rel="canonical" />
+    <meta content="website" property="og:type" />
+    <meta content="Pedro Salazar | Software Developer Portfolio" property="og:title" />
+    <meta content="en_US" property="og:locale" />
+    <meta content="Web apps, desktop systems, Java/Python projects, React interfaces, cybersecurity experiments and applied AI by Pedro Salazar." property="og:description" />
+    <meta content="https://salazarpaulo.github.io/" property="og:url" />
+    <meta content="https://salazarpaulo.github.io/assets/images/pedro-salazar.webp" property="og:image" />
+    <meta content="Portrait of Pedro Salazar, software developer" property="og:image:alt" />
+    <meta content="900" property="og:image:width" />
+    <meta content="1200" property="og:image:height" />
+    <meta content="Pedro Salazar" property="og:site_name" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="Pedro Salazar | Software Developer Portfolio" name="twitter:title" />
+    <meta content="Web apps, desktop systems, Java/Python projects, React interfaces, cybersecurity experiments and applied AI by Pedro Salazar." name="twitter:description" />
+    <meta content="https://salazarpaulo.github.io/assets/images/pedro-salazar.webp" name="twitter:image" />
+    <meta content="Portrait of Pedro Salazar, software developer" name="twitter:image:alt" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Pedro Salazar",
+        "url": "https://salazarpaulo.github.io/",
+        "image": "https://salazarpaulo.github.io/assets/images/pedro-salazar.webp",
+        "jobTitle": "Software Developer",
+        "description": "Software developer portfolio featuring web applications, desktop systems, Java, Python, React, cybersecurity experiments and applied AI projects.",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Universidad Tecnológica de Panamá"
+        },
+        "sameAs": [
+          "https://github.com/SalazarPaulo",
+          "https://www.linkedin.com/in/paulo-salazar/"
+        ],
+        "knowsAbout": [
+          "Web Development",
+          "Java",
+          "Python",
+          "JavaScript",
+          "React",
+          "Desktop Applications",
+          "Applied Artificial Intelligence",
+          "Cybersecurity"
+        ]
+      }
+    </script>
+
     <link
       href="assets/icons/logo.svg?v=3"
       rel="icon"
@@ -31,26 +78,46 @@
       sizes="180x180"
     />
 
-    <!-- Google Fonts serves WOFF2 to modern browsers; only the weights used by this UI are requested. -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    
+    <!-- Local fonts are self-hosted in assets/fonts to avoid external font requests. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Space+Mono:wght@400;700&amp;display=swap"
-      rel="stylesheet"
+      href="assets/fonts/PressStart2P-Regular.woff2"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <!-- Production bundles. Edit styles.css and script.js, then run npm run build. -->
+    <link
+      href="assets/fonts/SpaceMono-Regular.woff2"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      href="assets/fonts/SpaceMono-Bold.woff2"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link href="styles.min.css" rel="stylesheet" />
+    <link href="project-modal.css" rel="stylesheet" />
     <meta content="#07071a" name="theme-color" />
-    <meta content="index, follow" name="robots" />
+    <meta content="index, follow, max-image-preview:large" name="robots" />
+    <meta content="index, follow, max-image-preview:large" name="googlebot" />
   </head>
   <body data-palette="neon" data-resolved-theme="dark" data-theme="system">
+    
     <!-- ==================== AMBIENT BACKGROUND ==================== -->
     <main aria-label="Portafolio arcade de Pedro Salazar" class="arcade-stage">
       <div aria-hidden="true" class="ambient ambient--one"></div>
       <div aria-hidden="true" class="ambient ambient--two"></div>
       <div aria-hidden="true" class="ambient ambient--three"></div>
+      
       <!-- ==================== ARCADE CABINET ==================== -->
       <section aria-label="Máquina arcade interactiva" class="arcade-cabinet">
+        
         <!-- ---------- 01 · MARQUEE MODULE ---------- -->
         <header class="cabinet-top marquee-module">
           <div aria-hidden="true" class="marquee-glow"></div>
@@ -63,6 +130,7 @@
           <p>PLAYER 01 · PEDRO SALAZAR · SOFTWARE DEVELOPER</p>
         </header>
         <div class="cabinet-body">
+          
           <!-- ---------- 02 · CRT SCREEN MODULE ---------- -->
           <section
             aria-label="Módulo central de pantalla CRT"
@@ -80,6 +148,7 @@
               aria-label="Pantalla CRT del portafolio"
               class="screen-shell"
             >
+              
               <!-- CRT STATUS BAR & QUICK ACTIONS -->
               <header class="screen-header">
                 <span class="screen-header__live"
@@ -118,6 +187,7 @@
                   </button>
                 </div>
               </header>
+              
               <!-- CRT LAYERS: CANVAS, SCANLINES, NOISE & VIGNETTE -->
               <div class="screen-frame">
                 <canvas aria-hidden="true" id="arcade-canvas"></canvas>
@@ -130,12 +200,14 @@
                   id="screen-notice"
                   role="status"
                 ></div>
+                
                 <!-- CRT PAGE ROUTER -->
                 <div
                   aria-live="polite"
                   class="screen-content"
                   id="screen-content"
                 >
+                  
                   <!-- PAGE · HOME -->
                   <section
                     class="screen-page screen-page--active"
@@ -206,6 +278,7 @@
                       >
                     </div>
                   </section>
+                  
                   <!-- PAGE · PROFILE -->
                   <section class="screen-page" data-page="profile" hidden="">
                     <p class="eyebrow" data-i18n="profileEyebrow">
@@ -247,12 +320,13 @@
                             >&gt; background: Systems &amp; Computer
                             Engineering</span
                           ><span data-i18n="profileLineThree"
-                            >&gt; status: academic requirements completed</span
+                            >&gt; focus: web · desktop · games · AI/security</span
                           >
                         </div>
                       </div>
                     </div>
                   </section>
+                  
                   <!-- PAGE · PROJECTS -->
                   <section class="screen-page" data-page="projects" hidden="">
                     <p class="eyebrow" data-i18n="projectsEyebrow">
@@ -326,13 +400,13 @@
                               decoding="async"
                               loading="lazy"
                               src="assets/tech/github.svg"
-                            />GITHUB ↗</a
+                            />GITHUB <span class="project-action__arrow" aria-hidden="true">↗</span></a
                           ><a
                             class="project-action"
                             href="https://cristinagranda.es/"
                             rel="noopener noreferrer"
                             target="_blank"
-                            >LIVE ↗</a
+                            >LIVE <span class="project-action__arrow" aria-hidden="true">↗</span></a
                           >
                         </div>
                       </article>
@@ -381,7 +455,7 @@
                               decoding="async"
                               loading="lazy"
                               src="assets/tech/github.svg"
-                            />GITHUB ↗</a
+                            />GITHUB <span class="project-action__arrow" aria-hidden="true">↗</span></a
                           >
                         </div>
                       </article>
@@ -423,12 +497,91 @@
                               decoding="async"
                               loading="lazy"
                               src="assets/tech/github.svg"
-                            />GITHUB ↗</a
+                            />GITHUB <span class="project-action__arrow" aria-hidden="true">↗</span></a
+                          >
+                        </div>
+                      </article>
+                      <article
+                        aria-label="Open details for Space Ship"
+                        class="project-card"
+                        data-project="spaceShip"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span class="project-card__number">04</span>
+                        <h3>SPACE SHIP</h3>
+                        <div class="tag-row tag-row--logos">
+                          <span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/java.svg"
+                            />JAVA</span
+                          ><span>JAVA2D</span
+                          ><span>CANVAS</span>
+                        </div>
+                        <div class="project-actions">
+                          <a
+                            class="project-action"
+                            href="https://github.com/SalazarPaulo/space_ship"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            ><img
+                              alt=""
+                              class="image-size-buttons"
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/github.svg"
+                            />GITHUB <span class="project-action__arrow" aria-hidden="true">↗</span></a
+                          >
+                        </div>
+                      </article>
+                      <article
+                        aria-label="Open details for IDS-ML Thesis"
+                        class="project-card"
+                        data-project="idsml"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span class="project-card__number">05</span>
+                        <h3>IDS-ML THESIS</h3>
+                        <div class="tag-row tag-row--logos">
+                          <span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/python.svg"
+                            />PYTHON</span
+                          ><span
+                            ><img
+                              alt=""
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/ai-search.svg"
+                            />ML</span
+                          ><span>IDS</span>
+                        </div>
+                        <div class="project-actions">
+                          <a
+                            class="project-action"
+                            href="https://github.com/SalazarPaulo/hybrid-ids-ml-flow-based-thesis"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            ><img
+                              alt=""
+                              class="image-size-buttons"
+                              decoding="async"
+                              loading="lazy"
+                              src="assets/tech/github.svg"
+                            />GITHUB <span class="project-action__arrow" aria-hidden="true">↗</span></a
                           >
                         </div>
                       </article>
                     </div>
                   </section>
+                  
                   <!-- PAGE · SKILLS -->
                   <section class="screen-page" data-page="skills" hidden="">
                     <div class="skill-inventory">
@@ -665,6 +818,7 @@
                       </div>
                     </div>
                   </section>
+                  
                   <!-- PAGE · CONTACT -->
                   <section
                     class="screen-page screen-page--contact"
@@ -737,6 +891,7 @@
                       </div>
                     </div>
                   </section>
+                  
                   <!-- PAGE · ABOUT ME -->
                   <section class="screen-page" data-page="about" hidden="">
                     <p class="eyebrow" data-i18n="aboutEyebrow">
@@ -806,6 +961,7 @@
                       </button>
                     </div>
                   </section>
+                  
                   <!-- PAGE · GAME SELECT -->
                   <section class="screen-page" data-page="games" hidden="">
                     <div class="game-intro">
@@ -826,6 +982,7 @@
                         RETURN TO PORTFOLIO
                       </button>
                     </div>
+                    
                     <!-- Accordion of games. -->
                     <div
                       aria-label="Game selection"
@@ -930,6 +1087,7 @@
                       </button>
                     </div>
                   </section>
+                  
                   <!-- PAGE · NEON FIGHTERS -->
                   <section
                     class="screen-page screen-page--game"
@@ -1024,6 +1182,7 @@
                       </div>
                     </div>
                   </section>
+                  
                   <!-- PAGE · SETTINGS -->
                   <section class="screen-page" data-page="settings" hidden="">
                     <p class="eyebrow" data-i18n="settingsEyebrow">
@@ -1170,6 +1329,7 @@
                   </section>
                 </div>
               </div>
+              
               <!-- CRT FOOTER: LOCATION, INPUT HINTS & CREDITS -->
               <div class="screen-footer">
                 <span id="screen-location">HOME / INSERT COIN</span
@@ -1182,8 +1342,10 @@
               </div>
             </section>
           </section>
+          
           <!-- ---------- 03 · CONTROL CONSOLE MODULE ---------- -->
           <section aria-label="Módulo de consola arcade" class="control-module">
+            
             <!-- JOYSTICK, NAVIGATION BUTTONS, START, COIN & SETTINGS -->
             <section aria-label="Controles del arcade" class="control-panel">
               <div aria-hidden="true" class="speaker speaker--left">
@@ -1286,6 +1448,7 @@
                 <i></i><i></i><i></i><i></i><i></i><i></i>
               </div>
             </section>
+            
             <!-- STYLE BLUE CONSOLE NOTICE -->
             <div
               aria-live="polite"
@@ -1295,17 +1458,21 @@
             ></div>
           </section>
         </div>
+        
         <!-- CABINET FOOTER -->
         <footer aria-hidden="true" class="cabinet-footer">
           <span>© 2026 PEDRO SALAZAR</span><span>MADE WITH HTML · CSS · JS</span
           ><span>NO SCROLL MODE</span>
         </footer>
       </section>
+      
       <!-- COIN INSERTION VISUAL EFFECT -->
       <div aria-hidden="true" class="coin-fx" id="coin-fx">
         <span class="coin-fx__trail"></span><span class="coin-fx__token"></span>
       </div>
     </main>
+    
+    
     <!-- ==================== MODALS ==================== -->
     <!-- ABOUT ME -->
     <div
@@ -1330,6 +1497,7 @@
         <div id="about-modal-body"></div>
       </div>
     </div>
+    
     <!-- PROJECT DETAIL MODAL -->
     <div
       aria-hidden="true"
@@ -1354,6 +1522,7 @@
         <div class="modal-actions" id="project-modal-actions"></div>
       </div>
     </div>
+    
     <!-- CV DETAIL & DOWNLOAD MODAL -->
     <div
       aria-hidden="true"
@@ -1391,6 +1560,7 @@
         </div>
       </div>
     </div>
+    
     <!-- GMAIL CONTACT FORM MODAL -->
     <div
       aria-hidden="true"
@@ -1450,7 +1620,9 @@
         </form>
       </div>
     </div>
+    
     <!-- APPLICATION SCRIPT -->
     <script defer="" src="script.min.js"></script>
+    <script defer="" src="project-modal.js"></script>
   </body>
 </html>

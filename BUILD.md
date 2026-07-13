@@ -2,9 +2,11 @@
 
 The readable source files are `styles.css` and `script.js`.
 
+This repository uses `pnpm-lock.yaml`, so dependency installation and build commands should stay aligned with pnpm.
+
 ```bash
-npm install
-npm run build
+pnpm install --frozen-lockfile
+pnpm run build
 ```
 
 The build updates `styles.min.css` and `script.min.js`, which are the files loaded by `index.html`.
@@ -12,5 +14,7 @@ The build updates `styles.min.css` and `script.min.js`, which are the files load
 Before publishing, run:
 
 ```bash
-npm run check
+pnpm run check
 ```
+
+---

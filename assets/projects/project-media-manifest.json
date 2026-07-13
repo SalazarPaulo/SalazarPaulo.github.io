@@ -1,0 +1,158 @@
+{
+  "basePath": "assets/projects",
+  "projects": {
+    "cristina-granda": {
+      "title": "Portfolio Cristina Granda",
+      "images": [
+        {
+          "local": "assets/projects/cristina-granda/images/home.webp",
+          "alt": "Hero / Inicio"
+        },
+        {
+          "local": "assets/projects/cristina-granda/images/about.webp",
+          "alt": "Sobre Mi"
+        },
+        {
+          "local": "assets/projects/cristina-granda/images/intonations.webp",
+          "alt": "Entonaciones"
+        },
+        {
+          "local": "assets/projects/cristina-granda/images/demos.webp",
+          "alt": "Demos"
+        },
+        {
+          "local": "assets/projects/cristina-granda/images/delivery.webp",
+          "alt": "Entrega de Voz en Off"
+        },
+        {
+          "local": "assets/projects/cristina-granda/images/contact.webp",
+          "alt": "Contacto"
+        }
+      ],
+      "videos": [],
+      "posters": []
+    },
+    "bank-project": {
+      "title": "Bank Project",
+      "images": [
+        {
+          "local": "assets/projects/bank-project/images/login.webp",
+          "alt": "Login"
+        },
+        {
+          "local": "assets/projects/bank-project/images/dashboard.webp",
+          "alt": "Client dashboard"
+        },
+        {
+          "local": "assets/projects/bank-project/images/accounts.webp",
+          "alt": "Accounts"
+        },
+        {
+          "local": "assets/projects/bank-project/images/create-client.webp",
+          "alt": "Create client"
+        },
+        {
+          "local": "assets/projects/bank-project/images/overview.webp",
+          "alt": "Overview"
+        }
+      ],
+      "videos": [],
+      "posters": []
+    },
+    "n-queens-visualizer": {
+      "title": "N-Queens Visualizer",
+      "images": [
+        {
+          "local": "assets/projects/n-queens-visualizer/images/cover.webp",
+          "alt": "Main view"
+        },
+        {
+          "local": "assets/projects/n-queens-visualizer/images/manual-placement.webp",
+          "alt": "Manual placement"
+        },
+        {
+          "local": "assets/projects/n-queens-visualizer/images/valid-moves.webp",
+          "alt": "Valid moves"
+        },
+        {
+          "local": "assets/projects/n-queens-visualizer/images/solution-complete.webp",
+          "alt": "Solution"
+        }
+      ],
+      "videos": [],
+      "posters": []
+    },
+    "space-ship": {
+      "title": "Space Ship",
+      "images": [
+        {
+          "local": "assets/projects/space-ship/images/menu-episode-phantom.webp",
+          "alt": "Episode Phantom menu"
+        },
+        {
+          "local": "assets/projects/space-ship/images/gameplay-red-laser.webp",
+          "alt": "Red laser gameplay"
+        },
+        {
+          "local": "assets/projects/space-ship/images/gameplay-powerups.webp",
+          "alt": "Power-ups"
+        },
+        {
+          "local": "assets/projects/space-ship/images/gameplay-wave-two.webp",
+          "alt": "Second wave"
+        }
+      ],
+      "videos": [
+        {
+          "local": "assets/projects/space-ship/videos/space-ship-demo.mp4",
+          "label": "Gameplay demo"
+        }
+      ],
+      "posters": [
+        {
+          "local": "assets/projects/space-ship/posters/gameplay-red-laser.webp",
+          "alt": "Video poster"
+        }
+      ]
+    },
+    "ids-ml-thesis": {
+      "title": "IDS-ML Thesis",
+      "images": [
+        {
+          "local": "assets/projects/ids-ml-thesis/images/level-1-captura.webp",
+          "alt": "Level 1 capture"
+        },
+        {
+          "local": "assets/projects/ids-ml-thesis/images/moe-interface.webp",
+          "alt": "Mixture of Experts interface"
+        },
+        {
+          "local": "assets/projects/ids-ml-thesis/images/level-3-nlp.webp",
+          "alt": "NLP interface"
+        },
+        {
+          "local": "assets/projects/ids-ml-thesis/images/terminal-orchestration.webp",
+          "alt": "Terminal orchestration"
+        },
+        {
+          "local": "assets/projects/ids-ml-thesis/images/nslkdd-confusion.webp",
+          "alt": "NSL-KDD confusion matrix"
+        },
+        {
+          "local": "assets/projects/ids-ml-thesis/images/unsw-confusion.webp",
+          "alt": "UNSW-NB15 confusion matrix"
+        },
+        {
+          "local": "assets/projects/ids-ml-thesis/images/unsw-roc-auc.webp",
+          "alt": "UNSW-NB15 ROC-AUC"
+        },
+        {
+          "local": "assets/projects/ids-ml-thesis/images/detected-score-example.webp",
+          "alt": "Detected score example"
+        }
+      ],
+      "videos": [],
+      "posters": []
+    }
+  }
+}

@@ -6,18 +6,6 @@
 - `prettier --check` passed for HTML, CSS, and JavaScript source.
 - A JSDOM bootstrap test passed for both JavaScript bundles.
 - Every local reference from `index.html` resolves to a file in this package.
-- The source files contain no historical version tokens or obsolete `bento` identifiers.
-
-## Naming changes
-
-| Previous name | Refactored name |
-|---|---|
-| `skills-v13-standalone` | `skill-inventory` |
-| `project-grid--v13` | `project-grid--featured` |
-| `bento-grid` / `bento-card` | `about-grid` / `about-card` |
-| `bento-modal` | `about-modal` |
-| `coin-fx__v2` / `coin-fx__v3` | `coin-fx__trail` / `coin-fx__token` |
-| `--ink`, `--cyan`, `--pixel` | semantic `--color-*` and `--font-*` tokens |
 
 ## File size snapshot
 
@@ -36,4 +24,6 @@
 
 - `index.html` loads the production bundles `styles.min.css` and `script.min.js`.
 - Readable source remains in `styles.css` and `script.js`.
-- `npm run build` regenerates the production bundles after changes.
+- `pnpm run build` regenerates the production bundles after changes.
+
+---
